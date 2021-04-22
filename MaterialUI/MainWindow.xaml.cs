@@ -71,7 +71,7 @@ namespace MaterialUI
 
         private void TrainerWindow_Click(object sender, RoutedEventArgs e)
         {
-
+            AppFrame.FrameMain.Navigate(new EmployeeList());
         }
     }
 }

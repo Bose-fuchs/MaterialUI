@@ -40,7 +40,7 @@ namespace MaterialUI.Pages
         {
             AddClientWindow addClient = new AddClientWindow();
             addClient.ShowDialog();
-
+            ClientDataGrid.ItemsSource = Connect.Model.Клиент.ToList();
         }
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)

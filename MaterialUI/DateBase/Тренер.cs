@@ -15,5 +15,15 @@ namespace MaterialUI.DateBase
     public partial class Тренер
     {
         public int Id { get; set; }
+        public string Фамилия { get; set; }
+        public string Имя { get; set; }
+        public string Отчество { get; set; }
+        public System.DateTime ДР { get; set; }
+        public string Телефон { get; set; }
+        public string Почта { get; set; }
+        public string Адрес { get; set; }
+        public string Паспорт { get; set; }
+        public byte Пол { get; set; }
+        public byte[] Фото { get; set; }
     }
 }
