@@ -90,30 +90,95 @@ namespace MaterialUI.Windows
 
         private void AddClient_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (CheckForm())
             {
-                Тренер тренер = new Тренер()
+                try
                 {
-                    Имя = NameCl.Text,
-                    Фамилия = Family.Text,
-                    Отчество = Patronymic.Text,
-                    Телефон = Phone.Text,
-                    ДР = (DateTime)BirthDay.SelectedDate,
-                    Почта = Email.Text,
-                    Паспорт = Multipass.Text,
-                    Адрес = Adres.Text,
-                    Пол = Convert.ToByte(Gender.SelectedValue),
-                    Фото = ImageSourceToBytes(new PngBitmapEncoder(), ProfilePhoto.ImageSource)
-                };
+                    Тренер тренер = new Тренер()
+                    {
+                        Имя = NameCl.Text,
+                        Фамилия = Family.Text,
+                        Отчество = Patronymic.Text,
+                        Телефон = Phone.Text,
+                        ДР = (DateTime)BirthDay.SelectedDate,
+                        Почта = Email.Text,
+                        Паспорт = Multipass.Text,
+                        Адрес = Adres.Text,
+                        Пол = Convert.ToByte(Gender.SelectedValue),
+                        Фото = ImageSourceToBytes(new PngBitmapEncoder(), ProfilePhoto.ImageSource)
+                    };
 
-                Connect.Model.Тренер.Add(тренер);
-                Connect.Model.SaveChanges();
-                MessageBox.Show("Запись добавлена", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
-                this.Close();
+                    Connect.Model.Тренер.Add(тренер);
+                    Connect.Model.SaveChanges();
+                    MessageBox.Show("Запись добавлена", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show("Заполните обязательные поля", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        // Костыль для валидации данных
+        private bool CheckForm()
+        {
+            int counter = 0;
+            IEnumerable<TextBox> collection = GridForms.Children.OfType<TextBox>();
+
+            foreach (var item in collection)
+            {
+                if (item.Text == "")
+                {
+                    item.BorderBrush = new SolidColorBrush(Colors.Red);
+                    item.BorderThickness = new Thickness(0, 0, 0, 2);
+                    counter++;
+                }
+                else
+                {
+                    item.BorderBrush = new SolidColorBrush(Colors.Gray);
+                    item.BorderThickness = new Thickness(0, 0, 0, 1);
+                    counter--;
+                }
+            }
+
+            if (BirthDay.SelectedDate == null)
+            {
+                BirthDay.BorderBrush = new SolidColorBrush(Colors.Red);
+                BirthDay.BorderThickness = new Thickness(0, 0, 0, 2);
+                counter++;
+            }
+            else
+            {
+                BirthDay.BorderBrush = new SolidColorBrush(Colors.Gray);
+                BirthDay.BorderThickness = new Thickness(0, 0, 0, 1);
+                counter--;
+            }
+
+            if (Gender.SelectedItem == null)
+            {
+                Gender.BorderBrush = new SolidColorBrush(Colors.Red);
+                Gender.BorderThickness = new Thickness(0, 0, 0, 2);
+                counter++;
+            }
+            else
+            {
+                Gender.BorderBrush = new SolidColorBrush(Colors.Gray);
+                Gender.BorderThickness = new Thickness(0, 0, 0, 1);
+                counter--;
+            }
+
+            if (counter == -6)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 

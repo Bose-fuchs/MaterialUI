@@ -103,10 +103,16 @@ namespace MaterialUI.Pages
         // Открытие редактора через ПКМ
         private void EditMenuItem_Click(object sender, RoutedEventArgs e)
         {
+            // Получаем выбранного клиента
             Клиент клиент  = ClientDataGrid.SelectedItem as Клиент;
+            // Создаем страницу и передаём параметр (выбранного клиента)
             EditClientWindow clientWindow = new EditClientWindow(клиент);
+            // Открываем окно
             clientWindow.ShowDialog();
+            // Обновление записей в "родительском" окне после изменения
             ClientDataGrid.ItemsSource = Connect.Model.Клиент.ToList();
+
+            ClientDataGrid.ItemsSource = Connect.Model.Клиент.Where(x => x.Id == 1).ToList();
         }
 
         // Открытие клубной карты через ПКМ
