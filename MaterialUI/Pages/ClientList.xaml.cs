@@ -90,5 +90,13 @@ namespace MaterialUI.Pages
         {
             SearchString.Text = "";
         }
+
+        private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Клиент клиент = ClientDataGrid.SelectedItem as Клиент;
+            EditClientWindow clientWindow = new EditClientWindow(клиент);
+            clientWindow.ShowDialog();
+            ClientDataGrid.ItemsSource = Connect.Model.Клиент.ToList();
+        }
     }
 }

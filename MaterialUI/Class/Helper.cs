@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialUI.DateBase;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,5 +10,7 @@ namespace MaterialUI.Class
     public class Helper
     {
         public static byte[] Photo {get; set;}
+        public static Клиент client {get; set;}
+        public static Тренер employee {get; set;}
     }
 }

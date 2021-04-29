@@ -15,8 +15,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-
-        <DataGrid x:Name="ClientDataGrid"
+        <DataGrid x:Name="EmployeeDataGrid"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
                   SelectionMode="Extended"
@@ -25,7 +24,8 @@
                   HorizontalScrollBarVisibility="Hidden"
                   Width="800"
                   PreviewMouseRightButtonDown="ClientDataGrid_MouseRightButtonDown"                                   
-                  SelectionChanged="ClientDataGrid_SelectionChanged">
+                  SelectionChanged="ClientDataGrid_SelectionChanged"
+                  IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.Header>
@@ -44,8 +44,12 @@
                 <DataGridTextColumn Header="Телефон" Binding="{Binding Телефон}"/>
                 <DataGridTextColumn Header="E-Mail" Binding="{Binding Почта}"/>
             </DataGrid.Columns>
-
-        </DataGrid>
+            <DataGrid.Resources>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick" Handler="DataGridRow_MouseDoubleClick"/>
+                </Style>
+            </DataGrid.Resources>
+        </DataGrid> 
 
         <Grid Grid.Row="0"
               Background="White"
@@ -84,7 +88,10 @@
                         Background="{x:Null}"
                         BorderBrush="{x:Null}"
                         HorizontalAlignment="Center"
-                        VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="236,2,-20,2">
+                        VerticalAlignment="Center" 
+                        Grid.ColumnSpan="2" 
+                        Margin="236,2,-20,2"
+                        Visibility="Hidden">
                     <materialDesign:PackIcon Kind="Clear"
                                              Foreground="#2196F3" RenderTransformOrigin="-0.438,0.344" Height="19" Width="18"/>
                 </Button>

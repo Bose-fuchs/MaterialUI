@@ -26,11 +26,11 @@ namespace MaterialUI.Pages
         public EmployeeList()
         {
             InitializeComponent();
-            ClientDataGrid.ItemsSource = Connect.Model.Тренер.ToList();
+            EmployeeDataGrid.ItemsSource = Connect.Model.Тренер.ToList();
             RemoveButton.Visibility = Visibility.Hidden;
         }
 
-        private void ClientDataGrid_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private void EmployeeDataGrid_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             DataGrid grid = (DataGrid)sender;
             grid.UnselectAll();
@@ -40,23 +40,23 @@ namespace MaterialUI.Pages
         {
             AddEmployeeWindow addEmployee = new AddEmployeeWindow();
             addEmployee.ShowDialog();
-            ClientDataGrid.ItemsSource = Connect.Model.Тренер.ToList();
+            EmployeeDataGrid.ItemsSource = Connect.Model.Тренер.ToList();
         }
 
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
-            while (ClientDataGrid.SelectedItems.Count > 0)
+            while (EmployeeDataGrid.SelectedItems.Count > 0)
             {
-                Тренер service = ClientDataGrid.SelectedItem as Тренер;
+                Тренер service = EmployeeDataGrid.SelectedItem as Тренер;
                 Connect.Model.Тренер.Remove(service);
                 Connect.Model.SaveChanges();
-                ClientDataGrid.ItemsSource = Connect.Model.Клиент.ToList();
+                EmployeeDataGrid.ItemsSource = Connect.Model.Клиент.ToList();
             }
         }
 
-        private void ClientDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void EmployeeDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (ClientDataGrid.SelectedItems.Count > 0)
+            if (EmployeeDataGrid.SelectedItems.Count > 0)
             {
                 RemoveButton.Visibility = Visibility.Visible;
             }
@@ -83,12 +83,19 @@ namespace MaterialUI.Pages
                 ClearSearchStrin.Visibility = Visibility.Visible;
             }
 
-            ClientDataGrid.ItemsSource = Connect.Model.Клиент.Where(x => x.Фамилия.Contains(SearchString.Text)).ToList();
+            EmployeeDataGrid.ItemsSource = Connect.Model.Клиент.Where(x => x.Фамилия.Contains(SearchString.Text)).ToList();
         }
 
         private void ClearSearchStrin_Click(object sender, RoutedEventArgs e)
         {
             SearchString.Text = "";
+        }
+
+        private void DataGridRow_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Тренер тренер = EmployeeDataGrid.SelectedItem as Тренер;
+            EditEmployeeWindow clientWindow = new EditEmployeeWindow(тренер);
+            clientWindow.ShowDialog();
         }
     }
 }
