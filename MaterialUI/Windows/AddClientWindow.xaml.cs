@@ -109,6 +109,7 @@ namespace MaterialUI.Windows
                 Connect.Model.Клиент.Add(клиент);
                 Connect.Model.SaveChanges();
                 MessageBox.Show("Запись добавлена","Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.Close();
             }
             catch (Exception ex)
             {

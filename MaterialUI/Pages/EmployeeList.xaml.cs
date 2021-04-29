@@ -26,14 +26,9 @@ namespace MaterialUI.Pages
         public EmployeeList()
         {
             InitializeComponent();
-            EmployeeDataGrid.ItemsSource = Connect.Model.Тренер.ToList();
             RemoveButton.Visibility = Visibility.Hidden;
-        }
 
-        private void EmployeeDataGrid_MouseRightButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            DataGrid grid = (DataGrid)sender;
-            grid.UnselectAll();
+            EmployeeDataGrid.ItemsSource = Connect.Model.Тренер.ToList();
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -47,10 +42,10 @@ namespace MaterialUI.Pages
         {
             while (EmployeeDataGrid.SelectedItems.Count > 0)
             {
-                Тренер service = EmployeeDataGrid.SelectedItem as Тренер;
-                Connect.Model.Тренер.Remove(service);
+                Тренер employee = EmployeeDataGrid.SelectedItem as Тренер;
+                Connect.Model.Тренер.Remove(employee);
                 Connect.Model.SaveChanges();
-                EmployeeDataGrid.ItemsSource = Connect.Model.Клиент.ToList();
+                EmployeeDataGrid.ItemsSource = Connect.Model.Тренер.ToList();
             }
         }
 
@@ -96,6 +91,21 @@ namespace MaterialUI.Pages
             Тренер тренер = EmployeeDataGrid.SelectedItem as Тренер;
             EditEmployeeWindow clientWindow = new EditEmployeeWindow(тренер);
             clientWindow.ShowDialog();
+            EmployeeDataGrid.ItemsSource = Connect.Model.Тренер.ToList();
         }
+
+        private void EditMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            Тренер тренер = EmployeeDataGrid.SelectedItem as Тренер;
+            EditEmployeeWindow clientWindow = new EditEmployeeWindow(тренер);
+            clientWindow.ShowDialog();
+            EmployeeDataGrid.ItemsSource = Connect.Model.Тренер.ToList();
+        }
+
+        private void CardMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }

@@ -22,9 +22,9 @@
                   SelectionUnit="FullRow"
                   Grid.Row="1"
                   HorizontalScrollBarVisibility="Hidden"
-                  Width="800"
-                  PreviewMouseRightButtonDown="ClientDataGrid_MouseRightButtonDown"                                   
-                  SelectionChanged="ClientDataGrid_SelectionChanged"
+                  Width="800"           
+                  SelectionChanged="EmployeeDataGrid_SelectionChanged"
+                  MouseDoubleClick="DataGridRow_MouseDoubleClick"
                   IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTemplateColumn>
@@ -44,11 +44,36 @@
                 <DataGridTextColumn Header="Телефон" Binding="{Binding Телефон}"/>
                 <DataGridTextColumn Header="E-Mail" Binding="{Binding Почта}"/>
             </DataGrid.Columns>
-            <DataGrid.Resources>
+            <!--<DataGrid.Resources>
                 <Style TargetType="DataGridRow">
-                    <EventSetter Event="MouseDoubleClick" Handler="DataGridRow_MouseDoubleClick"/>
+                    <EventSetter Event="PreviewMouseDoubleClick" Handler="DataGridRow_MouseDoubleClick"/>
                 </Style>
-            </DataGrid.Resources>
+            </DataGrid.Resources>-->
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem  x:Name="EditMenuItem" Click="EditMenuItem_Click">
+                        <MenuItem.Header>Изменить</MenuItem.Header>
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="Edit"
+                                                     Foreground="#2196F3"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem  x:Name="CardMenuItem" Click="CardMenuItem_Click">
+                        <MenuItem.Header>Клубная карта</MenuItem.Header>
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="Card"
+                                                     Foreground="#2196F3"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem  x:Name="DeleteMenuItem" Click="RemoveButton_Click">
+                        <MenuItem.Header>Удалить</MenuItem.Header>
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="Delete"
+                                                     Foreground="#2196F3"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
         </DataGrid> 
 
         <Grid Grid.Row="0"

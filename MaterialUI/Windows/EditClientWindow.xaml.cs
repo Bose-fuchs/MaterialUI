@@ -119,8 +119,12 @@ namespace MaterialUI.Windows
             {
                 var result = Connect.Model.Клиент.SingleOrDefault(x => x.Id == Helper.client.Id);
                 result.Фамилия = Family.Text;
+                result.Имя = NameCl.Text;
+                result.Отчество = Patronymic.Text;
+
 
                 Connect.Model.SaveChanges();
+                this.Close();
             }
             catch (Exception)
             {

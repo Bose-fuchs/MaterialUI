@@ -59,11 +59,6 @@ namespace MaterialUI
             AppFrame.FrameMain.Navigate(new ClientList());
         }
 
-        private async Task LoadDataGrid()
-        {
-
-        }
-
         private void Exercise_Click(object sender, RoutedEventArgs e)
         {
 
