@@ -14,6 +14,18 @@ namespace MaterialUI.DateBase
     
     public partial class Абонемент
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Абонемент()
+        {
+            this.К_Карта = new HashSet<К_Карта>();
+        }
+    
         public byte Id { get; set; }
+        public string Название { get; set; }
+        public byte Длительность { get; set; }
+        public decimal Стоимость { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<К_Карта> К_Карта { get; set; }
     }
 }

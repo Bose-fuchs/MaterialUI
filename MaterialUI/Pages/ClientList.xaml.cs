@@ -111,14 +111,13 @@ namespace MaterialUI.Pages
             clientWindow.ShowDialog();
             // Обновление записей в "родительском" окне после изменения
             ClientDataGrid.ItemsSource = Connect.Model.Клиент.ToList();
-
-            ClientDataGrid.ItemsSource = Connect.Model.Клиент.Where(x => x.Id == 1).ToList();
         }
 
-        // Открытие клубной карты через ПКМ
+        // Открытие клубной карты через ПКМ 
         private void CardMenuItem_Click(object sender, RoutedEventArgs e)
         {
-
+            Клиент клиент = ClientDataGrid.SelectedItem as Клиент;
+            AppFrame.FrameMain.Navigate(new ClubCard(клиент));
         }
     }
 }

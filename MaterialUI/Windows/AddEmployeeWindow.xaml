@@ -3,11 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MaterialUI.Windows"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:ui="using:Microsoft.Toolkit.Uwp.UI"
-        xmlns:TextBoxValidator="clr-namespace:LaavorTextBoxValidation;assembly=TextBoxValidation"
-        mc:Ignorable="d" Height="480" Width="600" FontFamily="/MaterialUI;component/Resources/Fonts/#Roboto LightItalic" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="None"
+        mc:Ignorable="d" Height="480" Width="600" FontFamily="Roboto" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="None"
         Title="Добавить клиента" >
     <Grid>
         <Grid.RowDefinitions>
@@ -129,10 +126,9 @@
                          Margin="0,12,10,12"/>
 
                 <TextBox x:Name="NameCl" 
-                         materialDesign:HintAssist.Hint="Имя* "
+                         materialDesign:HintAssist.Hint="Имя*"
                          Height="26"
                          Grid.Column="1"
-                         
                          VerticalAlignment="Center"
                          Margin="10,12"/>
 
@@ -179,10 +175,15 @@
                           materialDesign:HintAssist.Hint="Пол*"
                           Margin="10,0,0,0"
                           Grid.Row="2"/>
+                <ComboBox x:Name="PlaceWork"
+                          Grid.Column="2"
+                          materialDesign:HintAssist.Hint="Место работы*"
+                          Margin="10,0,0,0"
+                          Grid.Row="2"/>
                 <StackPanel Grid.Row="3"
                             Grid.ColumnSpan="3">
                     <TextBox x:Name="Adres" 
-                         materialDesign:HintAssist.Hint="Адрес"
+                         materialDesign:HintAssist.Hint="Домашний адрес"
                          TextWrapping="Wrap"
                          AcceptsReturn="True"/>
                 </StackPanel>

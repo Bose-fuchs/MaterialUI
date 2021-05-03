@@ -25,7 +25,7 @@ namespace MaterialUI
         public MainWindow()
         {
             InitializeComponent();
-            Connect.Model = new DateBase.GymDBEntities2();
+            Connect.Model = new DateBase.GymDBEntities();
             AppFrame.FrameMain = MainFraim;
         }
 

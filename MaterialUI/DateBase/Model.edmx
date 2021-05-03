@@ -1,0 +1,654 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище GymDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Абонемент">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Длительность" Type="tinyint" Nullable="false" />
+          <Property Name="Стоимость" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="К_Карта">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Клиент" Type="int" Nullable="false" />
+          <Property Name="Абонемент" Type="tinyint" Nullable="false" />
+          <Property Name="ДатаНачала" Type="date" Nullable="false" />
+          <Property Name="Статус" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Клиент">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Фамилия" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Имя" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Отчество" Type="nchar" MaxLength="20" />
+          <Property Name="ДР" Type="date" Nullable="false" />
+          <Property Name="Телефон" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="Почта" Type="nchar" MaxLength="30" />
+          <Property Name="Адрес" Type="nchar" MaxLength="200" />
+          <Property Name="Паспорт" Type="nchar" MaxLength="11" Nullable="false" />
+          <Property Name="Пол" Type="tinyint" Nullable="false" />
+          <Property Name="Фото" Type="image" />
+          <Property Name="ДатаРегистрации" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Место_Работы">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="nchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Пол">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Посещения">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Услуга" Type="tinyint" Nullable="false" />
+          <Property Name="Карта" Type="int" Nullable="false" />
+          <Property Name="Дата" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Статус">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="nchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Тренер">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Фамилия" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Имя" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Отчество" Type="nchar" MaxLength="20" />
+          <Property Name="ДР" Type="date" Nullable="false" />
+          <Property Name="Телефон" Type="nchar" MaxLength="15" Nullable="false" />
+          <Property Name="Почта" Type="nchar" MaxLength="30" />
+          <Property Name="Адрес" Type="nchar" MaxLength="200" />
+          <Property Name="Паспорт" Type="nchar" MaxLength="11" Nullable="false" />
+          <Property Name="Пол" Type="tinyint" Nullable="false" />
+          <Property Name="Фото" Type="image" />
+          <Property Name="МестоРаботы" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Услуга">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Описание" Type="nchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_К_Карта_Абонемент">
+          <End Role="Абонемент" Type="Self.Абонемент" Multiplicity="1" />
+          <End Role="К_Карта" Type="Self.К_Карта" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Абонемент">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="К_Карта">
+              <PropertyRef Name="Абонемент" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_К_Карта_Клиент">
+          <End Role="Клиент" Type="Self.Клиент" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="К_Карта" Type="Self.К_Карта" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Клиент">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="К_Карта">
+              <PropertyRef Name="Клиент" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_К_Карта_Статус">
+          <End Role="Статус" Type="Self.Статус" Multiplicity="1" />
+          <End Role="К_Карта" Type="Self.К_Карта" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Статус">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="К_Карта">
+              <PropertyRef Name="Статус" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Клиент_Пол">
+          <End Role="Пол" Type="Self.Пол" Multiplicity="1" />
+          <End Role="Клиент" Type="Self.Клиент" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пол">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Клиент">
+              <PropertyRef Name="Пол" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Посещения_К_Карта">
+          <End Role="К_Карта" Type="Self.К_Карта" Multiplicity="1" />
+          <End Role="Посещения" Type="Self.Посещения" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="К_Карта">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Посещения">
+              <PropertyRef Name="Карта" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Посещения_Услуга">
+          <End Role="Услуга" Type="Self.Услуга" Multiplicity="1" />
+          <End Role="Посещения" Type="Self.Посещения" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Услуга">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Посещения">
+              <PropertyRef Name="Услуга" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Тренер_Место_Работы">
+          <End Role="Место_Работы" Type="Self.Место_Работы" Multiplicity="1" />
+          <End Role="Тренер" Type="Self.Тренер" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Место_Работы">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Тренер">
+              <PropertyRef Name="МестоРаботы" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Тренер_Пол">
+          <End Role="Пол" Type="Self.Пол" Multiplicity="1" />
+          <End Role="Тренер" Type="Self.Тренер" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пол">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Тренер">
+              <PropertyRef Name="Пол" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище GymDBModelContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Абонемент" EntityType="Self.Абонемент" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="К_Карта" EntityType="Self.К_Карта" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Клиент" EntityType="Self.Клиент" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Место_Работы" EntityType="Self.Место_Работы" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Пол" EntityType="Self.Пол" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Посещения" EntityType="Self.Посещения" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Статус" EntityType="Self.Статус" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Тренер" EntityType="Self.Тренер" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Услуга" EntityType="Self.Услуга" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_К_Карта_Абонемент" Association="Self.FK_К_Карта_Абонемент">
+            <End Role="Абонемент" EntitySet="Абонемент" />
+            <End Role="К_Карта" EntitySet="К_Карта" />
+          </AssociationSet>
+          <AssociationSet Name="FK_К_Карта_Клиент" Association="Self.FK_К_Карта_Клиент">
+            <End Role="Клиент" EntitySet="Клиент" />
+            <End Role="К_Карта" EntitySet="К_Карта" />
+          </AssociationSet>
+          <AssociationSet Name="FK_К_Карта_Статус" Association="Self.FK_К_Карта_Статус">
+            <End Role="Статус" EntitySet="Статус" />
+            <End Role="К_Карта" EntitySet="К_Карта" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Клиент_Пол" Association="Self.FK_Клиент_Пол">
+            <End Role="Пол" EntitySet="Пол" />
+            <End Role="Клиент" EntitySet="Клиент" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Посещения_К_Карта" Association="Self.FK_Посещения_К_Карта">
+            <End Role="К_Карта" EntitySet="К_Карта" />
+            <End Role="Посещения" EntitySet="Посещения" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Посещения_Услуга" Association="Self.FK_Посещения_Услуга">
+            <End Role="Услуга" EntitySet="Услуга" />
+            <End Role="Посещения" EntitySet="Посещения" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Тренер_Место_Работы" Association="Self.FK_Тренер_Место_Работы">
+            <End Role="Место_Работы" EntitySet="Место_Работы" />
+            <End Role="Тренер" EntitySet="Тренер" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Тренер_Пол" Association="Self.FK_Тренер_Пол">
+            <End Role="Пол" EntitySet="Пол" />
+            <End Role="Тренер" EntitySet="Тренер" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GymDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="GymDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="GymDBModel.sysdiagrams" />
+          <EntitySet Name="Абонемент" EntityType="GymDBModel.Абонемент" />
+          <EntitySet Name="К_Карта" EntityType="GymDBModel.К_Карта" />
+          <EntitySet Name="Клиент" EntityType="GymDBModel.Клиент" />
+          <EntitySet Name="Место_Работы" EntityType="GymDBModel.Место_Работы" />
+          <EntitySet Name="Пол" EntityType="GymDBModel.Пол" />
+          <EntitySet Name="Посещения" EntityType="GymDBModel.Посещения" />
+          <EntitySet Name="Статус" EntityType="GymDBModel.Статус" />
+          <EntitySet Name="Тренер" EntityType="GymDBModel.Тренер" />
+          <EntitySet Name="Услуга" EntityType="GymDBModel.Услуга" />
+          <AssociationSet Name="FK_К_Карта_Абонемент" Association="GymDBModel.FK_К_Карта_Абонемент">
+            <End Role="Абонемент" EntitySet="Абонемент" />
+            <End Role="К_Карта" EntitySet="К_Карта" />
+          </AssociationSet>
+          <AssociationSet Name="FK_К_Карта_Клиент" Association="GymDBModel.FK_К_Карта_Клиент">
+            <End Role="Клиент" EntitySet="Клиент" />
+            <End Role="К_Карта" EntitySet="К_Карта" />
+          </AssociationSet>
+          <AssociationSet Name="FK_К_Карта_Статус" Association="GymDBModel.FK_К_Карта_Статус">
+            <End Role="Статус" EntitySet="Статус" />
+            <End Role="К_Карта" EntitySet="К_Карта" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Посещения_К_Карта" Association="GymDBModel.FK_Посещения_К_Карта">
+            <End Role="К_Карта" EntitySet="К_Карта" />
+            <End Role="Посещения" EntitySet="Посещения" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Клиент_Пол" Association="GymDBModel.FK_Клиент_Пол">
+            <End Role="Пол" EntitySet="Пол" />
+            <End Role="Клиент" EntitySet="Клиент" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Тренер_Место_Работы" Association="GymDBModel.FK_Тренер_Место_Работы">
+            <End Role="Место_Работы" EntitySet="Место_Работы" />
+            <End Role="Тренер" EntitySet="Тренер" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Тренер_Пол" Association="GymDBModel.FK_Тренер_Пол">
+            <End Role="Пол" EntitySet="Пол" />
+            <End Role="Тренер" EntitySet="Тренер" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Посещения_Услуга" Association="GymDBModel.FK_Посещения_Услуга">
+            <End Role="Услуга" EntitySet="Услуга" />
+            <End Role="Посещения" EntitySet="Посещения" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Абонемент">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Длительность" Type="Byte" Nullable="false" />
+          <Property Name="Стоимость" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="К_Карта" Relationship="GymDBModel.FK_К_Карта_Абонемент" FromRole="Абонемент" ToRole="К_Карта" />
+        </EntityType>
+        <EntityType Name="К_Карта">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Клиент" Type="Int32" Nullable="false" />
+          <Property Name="Абонемент" Type="Byte" Nullable="false" />
+          <Property Name="ДатаНачала" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Статус" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Абонемент1" Relationship="GymDBModel.FK_К_Карта_Абонемент" FromRole="К_Карта" ToRole="Абонемент" />
+          <NavigationProperty Name="Клиент1" Relationship="GymDBModel.FK_К_Карта_Клиент" FromRole="К_Карта" ToRole="Клиент" />
+          <NavigationProperty Name="Статус1" Relationship="GymDBModel.FK_К_Карта_Статус" FromRole="К_Карта" ToRole="Статус" />
+          <NavigationProperty Name="Посещения" Relationship="GymDBModel.FK_Посещения_К_Карта" FromRole="К_Карта" ToRole="Посещения" />
+        </EntityType>
+        <EntityType Name="Клиент">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Фамилия" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Имя" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Отчество" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="ДР" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Телефон" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="Почта" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Адрес" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="Паспорт" Type="String" Nullable="false" MaxLength="11" FixedLength="true" Unicode="true" />
+          <Property Name="Пол" Type="Byte" Nullable="false" />
+          <Property Name="Фото" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ДатаРегистрации" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="К_Карта" Relationship="GymDBModel.FK_К_Карта_Клиент" FromRole="Клиент" ToRole="К_Карта" />
+          <NavigationProperty Name="Пол1" Relationship="GymDBModel.FK_Клиент_Пол" FromRole="Клиент" ToRole="Пол" />
+        </EntityType>
+        <EntityType Name="Место_Работы">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Тренер" Relationship="GymDBModel.FK_Тренер_Место_Работы" FromRole="Место_Работы" ToRole="Тренер" />
+        </EntityType>
+        <EntityType Name="Пол">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Клиент" Relationship="GymDBModel.FK_Клиент_Пол" FromRole="Пол" ToRole="Клиент" />
+          <NavigationProperty Name="Тренер" Relationship="GymDBModel.FK_Тренер_Пол" FromRole="Пол" ToRole="Тренер" />
+        </EntityType>
+        <EntityType Name="Посещения">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Услуга" Type="Byte" Nullable="false" />
+          <Property Name="Карта" Type="Int32" Nullable="false" />
+          <Property Name="Дата" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="К_Карта" Relationship="GymDBModel.FK_Посещения_К_Карта" FromRole="Посещения" ToRole="К_Карта" />
+          <NavigationProperty Name="Услуга1" Relationship="GymDBModel.FK_Посещения_Услуга" FromRole="Посещения" ToRole="Услуга" />
+        </EntityType>
+        <EntityType Name="Статус">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="К_Карта" Relationship="GymDBModel.FK_К_Карта_Статус" FromRole="Статус" ToRole="К_Карта" />
+        </EntityType>
+        <EntityType Name="Тренер">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Фамилия" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Имя" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Отчество" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="ДР" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Телефон" Type="String" Nullable="false" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="Почта" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Адрес" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="Паспорт" Type="String" Nullable="false" MaxLength="11" FixedLength="true" Unicode="true" />
+          <Property Name="Пол" Type="Byte" Nullable="false" />
+          <Property Name="Фото" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="МестоРаботы" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Место_Работы" Relationship="GymDBModel.FK_Тренер_Место_Работы" FromRole="Тренер" ToRole="Место_Работы" />
+          <NavigationProperty Name="Пол1" Relationship="GymDBModel.FK_Тренер_Пол" FromRole="Тренер" ToRole="Пол" />
+        </EntityType>
+        <EntityType Name="Услуга">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Описание" Type="String" Nullable="false" MaxLength="200" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Посещения" Relationship="GymDBModel.FK_Посещения_Услуга" FromRole="Услуга" ToRole="Посещения" />
+        </EntityType>
+        <Association Name="FK_К_Карта_Абонемент">
+          <End Type="GymDBModel.Абонемент" Role="Абонемент" Multiplicity="1" />
+          <End Type="GymDBModel.К_Карта" Role="К_Карта" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Абонемент">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="К_Карта">
+              <PropertyRef Name="Абонемент" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_К_Карта_Клиент">
+          <End Type="GymDBModel.Клиент" Role="Клиент" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="GymDBModel.К_Карта" Role="К_Карта" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Клиент">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="К_Карта">
+              <PropertyRef Name="Клиент" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_К_Карта_Статус">
+          <End Type="GymDBModel.Статус" Role="Статус" Multiplicity="1" />
+          <End Type="GymDBModel.К_Карта" Role="К_Карта" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Статус">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="К_Карта">
+              <PropertyRef Name="Статус" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Посещения_К_Карта">
+          <End Type="GymDBModel.К_Карта" Role="К_Карта" Multiplicity="1" />
+          <End Type="GymDBModel.Посещения" Role="Посещения" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="К_Карта">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Посещения">
+              <PropertyRef Name="Карта" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Клиент_Пол">
+          <End Type="GymDBModel.Пол" Role="Пол" Multiplicity="1" />
+          <End Type="GymDBModel.Клиент" Role="Клиент" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пол">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Клиент">
+              <PropertyRef Name="Пол" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Тренер_Место_Работы">
+          <End Type="GymDBModel.Место_Работы" Role="Место_Работы" Multiplicity="1" />
+          <End Type="GymDBModel.Тренер" Role="Тренер" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Место_Работы">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Тренер">
+              <PropertyRef Name="МестоРаботы" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Тренер_Пол">
+          <End Type="GymDBModel.Пол" Role="Пол" Multiplicity="1" />
+          <End Type="GymDBModel.Тренер" Role="Тренер" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пол">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Тренер">
+              <PropertyRef Name="Пол" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Посещения_Услуга">
+          <End Type="GymDBModel.Услуга" Role="Услуга" Multiplicity="1" />
+          <End Type="GymDBModel.Посещения" Role="Посещения" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Услуга">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Посещения">
+              <PropertyRef Name="Услуга" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище GymDBModelContainer" CdmEntityContainer="GymDBEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="GymDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Абонемент">
+            <EntityTypeMapping TypeName="GymDBModel.Абонемент">
+              <MappingFragment StoreEntitySet="Абонемент">
+                <ScalarProperty Name="Стоимость" ColumnName="Стоимость" />
+                <ScalarProperty Name="Длительность" ColumnName="Длительность" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="К_Карта">
+            <EntityTypeMapping TypeName="GymDBModel.К_Карта">
+              <MappingFragment StoreEntitySet="К_Карта">
+                <ScalarProperty Name="Статус" ColumnName="Статус" />
+                <ScalarProperty Name="ДатаНачала" ColumnName="ДатаНачала" />
+                <ScalarProperty Name="Абонемент" ColumnName="Абонемент" />
+                <ScalarProperty Name="Клиент" ColumnName="Клиент" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Клиент">
+            <EntityTypeMapping TypeName="GymDBModel.Клиент">
+              <MappingFragment StoreEntitySet="Клиент">
+                <ScalarProperty Name="ДатаРегистрации" ColumnName="ДатаРегистрации" />
+                <ScalarProperty Name="Фото" ColumnName="Фото" />
+                <ScalarProperty Name="Пол" ColumnName="Пол" />
+                <ScalarProperty Name="Паспорт" ColumnName="Паспорт" />
+                <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+                <ScalarProperty Name="Почта" ColumnName="Почта" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="ДР" ColumnName="ДР" />
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Место_Работы">
+            <EntityTypeMapping TypeName="GymDBModel.Место_Работы">
+              <MappingFragment StoreEntitySet="Место_Работы">
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Пол">
+            <EntityTypeMapping TypeName="GymDBModel.Пол">
+              <MappingFragment StoreEntitySet="Пол">
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Посещения">
+            <EntityTypeMapping TypeName="GymDBModel.Посещения">
+              <MappingFragment StoreEntitySet="Посещения">
+                <ScalarProperty Name="Дата" ColumnName="Дата" />
+                <ScalarProperty Name="Карта" ColumnName="Карта" />
+                <ScalarProperty Name="Услуга" ColumnName="Услуга" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Статус">
+            <EntityTypeMapping TypeName="GymDBModel.Статус">
+              <MappingFragment StoreEntitySet="Статус">
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Тренер">
+            <EntityTypeMapping TypeName="GymDBModel.Тренер">
+              <MappingFragment StoreEntitySet="Тренер">
+                <ScalarProperty Name="МестоРаботы" ColumnName="МестоРаботы" />
+                <ScalarProperty Name="Фото" ColumnName="Фото" />
+                <ScalarProperty Name="Пол" ColumnName="Пол" />
+                <ScalarProperty Name="Паспорт" ColumnName="Паспорт" />
+                <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+                <ScalarProperty Name="Почта" ColumnName="Почта" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="ДР" ColumnName="ДР" />
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Услуга">
+            <EntityTypeMapping TypeName="GymDBModel.Услуга">
+              <MappingFragment StoreEntitySet="Услуга">
+                <ScalarProperty Name="Описание" ColumnName="Описание" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

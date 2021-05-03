@@ -3,19 +3,13 @@ using MaterialUI.DateBase;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace MaterialUI.Windows
 {
@@ -33,6 +27,10 @@ namespace MaterialUI.Windows
                 Gender.SelectedValuePath = "Id";
                 Gender.DisplayMemberPath = "Название";
                 Gender.ItemsSource = Connect.Model.Пол.ToList();
+
+                PlaceWork.SelectedValuePath = "Id";
+                PlaceWork.DisplayMemberPath = "Название";
+                PlaceWork.ItemsSource = Connect.Model.Место_Работы.ToList();
             }
             catch (Exception)
             {
@@ -172,7 +170,20 @@ namespace MaterialUI.Windows
                 counter--;
             }
 
-            if (counter == -6)
+            if (PlaceWork.SelectedItem == null)
+            {
+                PlaceWork.BorderBrush = new SolidColorBrush(Colors.Red);
+                PlaceWork.BorderThickness = new Thickness(0, 0, 0, 2);
+                counter++;
+            }
+            else
+            {
+                PlaceWork.BorderBrush = new SolidColorBrush(Colors.Gray);
+                PlaceWork.BorderThickness = new Thickness(0, 0, 0, 1);
+                counter--;
+            }
+
+            if (counter == -7)
             {
                 return true;
             }

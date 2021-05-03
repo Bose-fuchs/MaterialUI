@@ -18,6 +18,7 @@ namespace MaterialUI.DateBase
         public Пол()
         {
             this.Клиент = new HashSet<Клиент>();
+            this.Тренер = new HashSet<Тренер>();
         }
     
         public byte Id { get; set; }
@@ -25,5 +26,7 @@ namespace MaterialUI.DateBase
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Клиент> Клиент { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Тренер> Тренер { get; set; }
     }
 }

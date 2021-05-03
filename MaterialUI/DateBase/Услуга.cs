@@ -14,6 +14,17 @@ namespace MaterialUI.DateBase
     
     public partial class Услуга
     {
-        public short Id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Услуга()
+        {
+            this.Посещения = new HashSet<Посещения>();
+        }
+    
+        public byte Id { get; set; }
+        public string Название { get; set; }
+        public string Описание { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Посещения> Посещения { get; set; }
     }
 }

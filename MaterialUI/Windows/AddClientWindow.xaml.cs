@@ -3,20 +3,13 @@ using MaterialUI.DateBase;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace MaterialUI.Windows
 {
@@ -112,13 +105,18 @@ namespace MaterialUI.Windows
                     Connect.Model.Клиент.Add(клиент);
                     Connect.Model.SaveChanges();
                     MessageBox.Show("Запись добавлена", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                    if (MessageBox.Show("Создать клубну карту?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                    {
+                        MessageBox.Show("Ща все будет");
+                    }
                     this.Close();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message.ToString());
                 }
-            } else
+            }
+            else
             {
                 MessageBox.Show("Заполните обязательные поля", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
             }

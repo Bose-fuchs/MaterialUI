@@ -12,22 +12,14 @@ namespace MaterialUI.DateBase
     using System;
     using System.Collections.Generic;
     
-    public partial class Тренер
+    public partial class Посещения
     {
         public int Id { get; set; }
-        public string Фамилия { get; set; }
-        public string Имя { get; set; }
-        public string Отчество { get; set; }
-        public System.DateTime ДР { get; set; }
-        public string Телефон { get; set; }
-        public string Почта { get; set; }
-        public string Адрес { get; set; }
-        public string Паспорт { get; set; }
-        public byte Пол { get; set; }
-        public byte[] Фото { get; set; }
-        public byte МестоРаботы { get; set; }
+        public byte Услуга { get; set; }
+        public int Карта { get; set; }
+        public System.DateTime Дата { get; set; }
     
-        public virtual Место_Работы Место_Работы { get; set; }
-        public virtual Пол Пол1 { get; set; }
+        public virtual К_Карта К_Карта { get; set; }
+        public virtual Услуга Услуга1 { get; set; }
     }
 }

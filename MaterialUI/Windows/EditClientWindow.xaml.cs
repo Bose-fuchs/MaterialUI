@@ -2,20 +2,12 @@
 using MaterialUI.DateBase;
 using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace MaterialUI.Windows
 {
@@ -40,7 +32,7 @@ namespace MaterialUI.Windows
             }
             catch (Exception)
             {
-                MessageBox.Show("Ошиба подключения к базе данных","Ошибка",MessageBoxButton.OK,MessageBoxImage.Error);
+                MessageBox.Show("Ошиба подключения к базе данных", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

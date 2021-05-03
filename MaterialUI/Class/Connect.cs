@@ -9,6 +9,6 @@ namespace MaterialUI.Class
 {
     class Connect
     {
-        public static GymDBEntities2 Model;
+        public static GymDBEntities Model;
     }
 }
