@@ -1,4 +1,5 @@
 ﻿using MaterialUI.Class;
+using MaterialUI.DateBase;
 using MaterialUI.Pages;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,8 @@ namespace MaterialUI
             InitializeComponent();
             Connect.Model = new DateBase.GymDBEntities();
             AppFrame.FrameMain = MainFraim;
+
+            UpdateStatusAsync();
         }
 
         private void NavigationButtons_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -67,6 +70,21 @@ namespace MaterialUI
         private void TrainerWindow_Click(object sender, RoutedEventArgs e)
         {
             AppFrame.FrameMain.Navigate(new EmployeeList());
+        }
+
+        private async void UpdateStatusAsync()
+        {
+            await Task.Run(() => 
+            {
+                List<К_Карта> card = Connect.Model.К_Карта.ToList();
+
+                foreach (var item in card)
+                {
+                    if (item.ДатаОкончания == DateTime.Now.Date) item.Статус = 2;
+                }
+
+                Connect.Model.SaveChanges();
+            });
         }
     }
 }

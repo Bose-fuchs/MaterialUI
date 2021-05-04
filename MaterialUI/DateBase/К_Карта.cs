@@ -24,6 +24,7 @@ namespace MaterialUI.DateBase
         public int Клиент { get; set; }
         public byte Абонемент { get; set; }
         public System.DateTime ДатаНачала { get; set; }
+        public System.DateTime ДатаОкончания { get; set; }
         public byte Статус { get; set; }
     
         public virtual Абонемент Абонемент1 { get; set; }

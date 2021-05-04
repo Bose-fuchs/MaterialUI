@@ -1,7 +1,9 @@
 ﻿using MaterialUI.Class;
 using MaterialUI.DateBase;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace MaterialUI.Pages
@@ -43,10 +45,28 @@ namespace MaterialUI.Pages
         {
             InitializeComponent();
             DataContext = this;
-            TestDG.ItemsSource = Connect.Model.К_Карта.Where(x => x.Клиент == клиент.Id).ToList();
-            Combo.ItemsSource = Connect.Model.Статус.ToList();
+            Helper.client = клиент;
+            GymmembershipDataGrid.ItemsSource = Connect.Model.К_Карта.Where(x => x.Клиент == клиент.Id).OrderBy(x => x.Статус1.Название).ToList();
             _FIO = клиент.Фамилия.Trim() + " " + клиент.Имя.Trim() + " " + клиент.Отчество;
             _Date = клиент.ДатаРегистрации.ToString("yyyy.MM.dd");
+        }
+
+        private void BackBatton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            AppFrame.FrameMain.GoBack();
+        }
+
+        private void AddGymmembership_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            К_Карта test = Connect.Model.К_Карта.Where(x => x.Клиент == Helper.client.Id).ToList().LastOrDefault();
+
+            if (test == null || test.Статус == 2)
+               MessageBox.Show("Можно добавить абонемент");
+            
+
+            if (test != null && test.Статус == 1)
+                MessageBox.Show("Есть действующий абонемент");
+
         }
     }
 }

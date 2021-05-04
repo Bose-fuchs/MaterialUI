@@ -22,7 +22,7 @@ namespace MaterialUI.DateBase
     
         public byte Id { get; set; }
         public string Название { get; set; }
-        public byte Длительность { get; set; }
+        public short Длительность { get; set; }
         public decimal Стоимость { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -21,7 +21,7 @@
           </Key>
           <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Название" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Длительность" Type="tinyint" Nullable="false" />
+          <Property Name="Длительность" Type="smallint" Nullable="false" />
           <Property Name="Стоимость" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="К_Карта">
@@ -32,6 +32,7 @@
           <Property Name="Клиент" Type="int" Nullable="false" />
           <Property Name="Абонемент" Type="tinyint" Nullable="false" />
           <Property Name="ДатаНачала" Type="date" Nullable="false" />
+          <Property Name="ДатаОкончания" Type="date" Nullable="false" />
           <Property Name="Статус" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="Клиент">
@@ -157,7 +158,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Посещения_К_Карта">
-          <End Role="К_Карта" Type="Self.К_Карта" Multiplicity="1" />
+          <End Role="К_Карта" Type="Self.К_Карта" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Посещения" Type="Self.Посещения" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="К_Карта">
@@ -312,7 +315,7 @@
           </Key>
           <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Название" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Длительность" Type="Byte" Nullable="false" />
+          <Property Name="Длительность" Type="Int16" Nullable="false" />
           <Property Name="Стоимость" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <NavigationProperty Name="К_Карта" Relationship="GymDBModel.FK_К_Карта_Абонемент" FromRole="Абонемент" ToRole="К_Карта" />
         </EntityType>
@@ -324,6 +327,7 @@
           <Property Name="Клиент" Type="Int32" Nullable="false" />
           <Property Name="Абонемент" Type="Byte" Nullable="false" />
           <Property Name="ДатаНачала" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ДатаОкончания" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Статус" Type="Byte" Nullable="false" />
           <NavigationProperty Name="Абонемент1" Relationship="GymDBModel.FK_К_Карта_Абонемент" FromRole="К_Карта" ToRole="Абонемент" />
           <NavigationProperty Name="Клиент1" Relationship="GymDBModel.FK_К_Карта_Клиент" FromRole="К_Карта" ToRole="Клиент" />
@@ -452,7 +456,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Посещения_К_Карта">
-          <End Type="GymDBModel.К_Карта" Role="К_Карта" Multiplicity="1" />
+          <End Type="GymDBModel.К_Карта" Role="К_Карта" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="GymDBModel.Посещения" Role="Посещения" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="К_Карта">
@@ -542,6 +548,7 @@
             <EntityTypeMapping TypeName="GymDBModel.К_Карта">
               <MappingFragment StoreEntitySet="К_Карта">
                 <ScalarProperty Name="Статус" ColumnName="Статус" />
+                <ScalarProperty Name="ДатаОкончания" ColumnName="ДатаОкончания" />
                 <ScalarProperty Name="ДатаНачала" ColumnName="ДатаНачала" />
                 <ScalarProperty Name="Абонемент" ColumnName="Абонемент" />
                 <ScalarProperty Name="Клиент" ColumnName="Клиент" />

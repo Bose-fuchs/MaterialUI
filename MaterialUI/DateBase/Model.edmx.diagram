@@ -4,10 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="142a723e620d4b4f8a4495f3c3fa0412" Name="Diagram1" ZoomLevel="97">
+      <Diagram DiagramId="142a723e620d4b4f8a4495f3c3fa0412" Name="Diagram1" ZoomLevel="55">
         <EntityTypeShape EntityType="GymDBModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" />
         <EntityTypeShape EntityType="GymDBModel.Абонемент" Width="1.5" PointX="3" PointY="15" />
-        <EntityTypeShape EntityType="GymDBModel.К_Карта" Width="1.5" PointX="5.25" PointY="8.375" />
+        <EntityTypeShape EntityType="GymDBModel.К_Карта" Width="1.5" PointX="5.25" PointY="8.25" />
         <EntityTypeShape EntityType="GymDBModel.Клиент" Width="1.5" PointX="3" PointY="7.875" />
         <EntityTypeShape EntityType="GymDBModel.Место_Работы" Width="1.5" PointX="0.75" PointY="1.5" />
         <EntityTypeShape EntityType="GymDBModel.Пол" Width="1.5" PointX="0.75" PointY="4.375" />

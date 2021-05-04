@@ -5,70 +5,124 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MaterialUI.Pages"
       xmlns:Properties="clr-namespace:MaterialUI.Properties" x:Class="MaterialUI.Pages.ClubCard"
+      xmlns:materialDesing="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ClubCard" FontFamily="Roboto">
 
     <Grid Background="#fff">
         <Grid.RowDefinitions>
-            <RowDefinition Height="200"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
+        <ScrollViewer>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="120"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="50*"/>
+                </Grid.RowDefinitions>
 
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="121*"/>
-                <ColumnDefinition Width="679*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="48*"/>
-            </Grid.RowDefinitions>
-            <TextBlock Text="Клубная карта"
-                       TextAlignment="Center"
-                       VerticalAlignment="Center"
-                       FontSize="18" TextDecorations="{x:Null}" Margin="0,4" Grid.ColumnSpan="2" Height="22"/>
-            <TextBlock Text="Владелец:"
-                       Grid.Row="1"
-                       VerticalAlignment="Center" Height="14" 
-                       TextAlignment="Left"
-                       FontSize="14" Margin="0,13"/>
-            <TextBlock Grid.Row="1"
-                       Grid.Column="1"
-                       FontSize="14"    
-                       Text="{Binding FIO}"
-                       VerticalAlignment="Center"
-                       TextAlignment="Left" Height="14" Margin="0,13"/>
-            <TextBlock Text="Зарегестрирован:"
-                       Grid.Row="2"
-                       VerticalAlignment="Center"
-                       TextAlignment="Left"
-                       FontSize="14" Height="16" Margin="0,12"/>
-            <TextBlock Text="{Binding Date}"
-                       Grid.Row="2"
-                       Grid.Column="1"
-                       VerticalAlignment="Center"
-                       TextAlignment="Left"
-                       FontSize="14" Height="16" Margin="0,12"/>
-        </Grid>
+                <!-- Строка данных -->
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="130"/>
+                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="130"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    
+                    <TextBlock Text="Клубная карта"
+                               TextAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="18" Margin="0,4"
+                               Grid.ColumnSpan="4" Height="22"
+                               TextDecorations="Underline"/>
+                    
+                    <TextBlock Text="Владелец:"
+                               Grid.Row="1"
+                               VerticalAlignment="Center" Height="14" 
+                               TextAlignment="Left"
+                               FontSize="14"
+                               Margin="25,13"/>
+                    <TextBlock Grid.Row="1"
+                               Grid.Column="1"
+                               FontSize="14"    
+                               Text="{Binding FIO}"
+                               VerticalAlignment="Center"
+                               TextAlignment="Left" Height="14" Margin="0,13"/>
+                    
+                    <TextBlock Text="Зарегестрирован:"
+                               Grid.Row="1"
+                               Grid.Column="2"
+                               VerticalAlignment="Center"
+                               TextAlignment="Left"
+                               FontSize="14" Height="16" Margin="0,12"/>
+                    <TextBlock Text="{Binding Date}"
+                               Grid.Row="1"
+                               Grid.Column="3"
+                               VerticalAlignment="Center"
+                               TextAlignment="Left"
+                               FontSize="14" Height="16" Margin="0,12"/>
+                </Grid>
 
-        <Expander Header="История абонементов"
-                  Grid.Row="1">
-            <DataGrid x:Name="TestDG"
-                      AutoGenerateColumns="False">
-                <DataGrid.Columns>
-                    <DataGridComboBoxColumn x:Name="Combo"
-                                            DisplayMemberPath="Название"
-                                            SelectedValuePath="Id"
-                                            Header="Абонемент"/>
-                    <DataGridTextColumn Header="Фамилия" 
-                                        Binding="{Binding Клиент1.Фамилия}"/>
-                    <DataGridTextColumn Header="Статус"
-                                        Binding="{Binding Статус1.Название}"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </Expander>
+                <Expander Header="Абонементы"
+                          Grid.Row="1"
+                          Grid.ColumnSpan="2"
+                          MinHeight="40"
+                          IsExpanded="True">
+                    <StackPanel>
+                        <DataGrid x:Name="GymmembershipDataGrid"
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="False"
+                              IsReadOnly="True"
+                              Margin="15,0">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Название" 
+                                                    Binding="{Binding Абонемент1.Название}"
+                                                    Width="200"/>
+                                <DataGridTextColumn Header="Начало"
+                                                    Binding="{Binding ДатаНачала, StringFormat='MM/dd/yy'}"/>
+                                <DataGridTextColumn Header="Конец"
+                                                    Binding="{Binding ДатаОкончания, StringFormat='MM/dd/yy'}"/>
+                                <DataGridTextColumn Header="Статус"
+                                                    Binding="{Binding Статус1.Название}"
+                                                    SortDirection="Ascending"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Button x:Name="AddGymmembership"
+                                Width="100"
+                                HorizontalAlignment="Right"
+                                Background="{x:Null}"
+                                BorderThickness="0" 
+                                FontWeight="Bold" Height="35"
+                                FontSize="20" Click="AddGymmembership_Click">
+                            <materialDesing:PackIcon Kind="Add"
+                                                     Foreground="Gray" FontSize="20"/>
+                        </Button>
+                    </StackPanel>
+                </Expander>
+                <Expander Header="Услуги"
+                          Grid.Row="2"
+                          Grid.ColumnSpan="2"
+                          MinHeight="40">
+                    <DataGrid x:Name="ServicesDataGrid">
+                        
+                    </DataGrid>
+                </Expander>
+            </Grid>
+        </ScrollViewer>
+        <Button x:Name="BackBatton"
+                Click="BackBatton_Click"
+                Grid.Row="1"
+                Background="{x:Null}"
+                BorderThickness="0">
+            <materialDesing:PackIcon Kind="ArrowBack"
+                                     Foreground="Black"/>
+        </Button>
     </Grid>
 </Page>
