@@ -92,6 +92,28 @@
                                 <DataGridTextColumn Header="Статус"
                                                     Binding="{Binding Статус1.Название}"
                                                     SortDirection="Ascending"/>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button x:Name="StopGMSButton"
+                                                    Click="StopGMSButton_Click"
+                                                    Background="{x:Null}"
+                                                    BorderThickness="0"
+                                                    Height="20"
+                                                    ToolTip="Остановить действие абонемента">
+                                                <materialDesing:PackIcon Kind="Stop"
+                                                                         Foreground="Red"
+                                                                         Height="15"/>
+                                            </Button>
+                                            <DataTemplate.Triggers>
+                                                <DataTrigger Binding="{Binding Path=Статус}"
+                                                             Value="2">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </DataTemplate.Triggers>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
                             </DataGrid.Columns>
                         </DataGrid>
                         <Button x:Name="AddGymmembership"

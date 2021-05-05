@@ -50,19 +50,24 @@ namespace MaterialUI.Windows
 
         private void AddGMSButton_Click(object sender, RoutedEventArgs e)
         {
-            Абонемент абонемент = NameGymMS.SelectedItem as Абонемент;
-            К_Карта card = new К_Карта
+            if (NameGymMS.SelectedItem != null)
             {
-                Клиент = Helper.client.Id,
-                Абонемент = абонемент.Id,
-                ДатаНачала = DateTime.Now,
-                ДатаОкончания = DateTime.Now.AddDays(абонемент.Длительность),
-                Статус = 1
-            };
-            Connect.Model.К_Карта.Add(card);
-            Connect.Model.SaveChanges();
+                Абонемент абонемент = NameGymMS.SelectedItem as Абонемент;
+                К_Карта card = new К_Карта
+                {
+                    Клиент = Helper.client.Id,
+                    Абонемент = абонемент.Id,
+                    ДатаНачала = DateTime.Now,
+                    ДатаОкончания = DateTime.Now.AddDays(абонемент.Длительность),
+                    Статус = 1
+                };
+                Connect.Model.К_Карта.Add(card);
+                Connect.Model.SaveChanges();
 
-            this.Close();
+                this.Close();
+            }
+            else
+                MessageBox.Show("Не выбран абонемент", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
         }   
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)

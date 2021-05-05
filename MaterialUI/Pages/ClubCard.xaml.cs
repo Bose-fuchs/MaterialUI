@@ -76,5 +76,14 @@ namespace MaterialUI.Pages
                 MessageBox.Show("Есть действующий абонемент", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);
 
         }
+
+        private void StopGMSButton_Click(object sender, RoutedEventArgs e)
+        {
+            К_Карта card = GymmembershipDataGrid.SelectedItem as К_Карта;
+            card.Статус = 2;
+            Connect.Model.SaveChanges();
+
+            GymmembershipDataGrid.ItemsSource = Connect.Model.К_Карта.Where(x => x.Клиент == Helper.client.Id).OrderBy(x => x.Статус1.Название).ToList();
+        }
     }
 }
