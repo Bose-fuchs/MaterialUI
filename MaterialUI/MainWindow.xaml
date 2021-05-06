@@ -113,10 +113,11 @@
                     </Grid>
                 </Button>
 
-                <Button x:Name="Window"
+                <Button x:Name="GymMembership"
                         Margin="10"
                         Background="#FFA46FE4" 
-                        BorderBrush="#FFCD21F3" Click="Window_Click">
+                        BorderBrush="#FFCD21F3" 
+                        Click="GymMembership_Click">
                     <Grid Width="150">
                         <materialDesign:PackIcon Kind="Card"
                                                  VerticalAlignment="Center"/>
@@ -126,10 +127,10 @@
                     </Grid>
                 </Button>
 
-                <Button x:Name="Exercise"
+                <Button x:Name="Service"
                         Margin="10"
                         Background="#FFA46FE4" 
-                        BorderBrush="#FFCD21F3" Click="Exercise_Click">
+                        BorderBrush="#FFCD21F3" Click="Service_Click">
                     <Grid Width="150">
                         <materialDesign:PackIcon Kind="ServiceToolbox"
                                                  VerticalAlignment="Center"/>

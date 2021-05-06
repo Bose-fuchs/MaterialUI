@@ -15,41 +15,19 @@ namespace MaterialUI.Pages
     public partial class ClubCard : Page
     {
 
-        private string _FIO;
-        public string FIO
-        {
-            get 
-            { 
-                return _FIO; 
-            }
-
-            set
-            {
-                _FIO = value;
-            }
-        }
-
-        private string _Date;
-        public string Date
-        {
-            get
-            {
-                return _Date;
-            }
-            set
-            {
-                _Date = value;
-            }
-        }
+        public string FIO { get; set; }
+        public string Date { get; set; }
 
         public ClubCard(Клиент клиент)
         {
             InitializeComponent();
+
             DataContext = this;
             Helper.client = клиент;
+
             GymmembershipDataGrid.ItemsSource = Connect.Model.К_Карта.Where(x => x.Клиент == клиент.Id).OrderBy(x => x.Статус1.Название).ToList();
-            _FIO = клиент.Фамилия.Trim() + " " + клиент.Имя.Trim() + " " + клиент.Отчество;
-            _Date = клиент.ДатаРегистрации.ToString("yyyy.MM.dd");
+            FIO = клиент.Фамилия.Trim() + " " + клиент.Имя.Trim() + " " + клиент.Отчество;
+            Date = клиент.ДатаРегистрации.ToString("yyyy.MM.dd");
         }
 
         private void BackBatton_Click(object sender, System.Windows.RoutedEventArgs e)

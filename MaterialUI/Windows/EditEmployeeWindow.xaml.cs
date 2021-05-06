@@ -118,8 +118,18 @@ namespace MaterialUI.Windows
             {
                 var result = Connect.Model.Тренер.SingleOrDefault(x => x.Id == Helper.employee.Id);
                 result.Фамилия = Family.Text;
-
+                result.Имя = NameCl.Text;
+                result.Отчество = Patronymic.Text;
+                result.Телефон = Phone.Text;
+                result.Почта = Email.Text;
+                result.Паспорт = Multipass.Text;
+                result.ДР = (DateTime)BirthDay.SelectedDate;
+                result.Пол = Convert.ToByte(Gender.SelectedValue);
+                result.Адрес = Adres.Text;
+                result.Фото = ImageSourceToBytes(new PngBitmapEncoder(), ProfilePhoto.ImageSource);
                 Connect.Model.SaveChanges();
+
+                this.Close();
             }
             catch (Exception)
             {

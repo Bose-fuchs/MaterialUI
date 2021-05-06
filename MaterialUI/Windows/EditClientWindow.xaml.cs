@@ -110,7 +110,6 @@ namespace MaterialUI.Windows
             try
             {
                 var result = Connect.Model.Клиент.SingleOrDefault(x => x.Id == Helper.client.Id);
-
                 result.Фамилия = Family.Text;
                 result.Имя = NameCl.Text;
                 result.Отчество = Patronymic.Text;
@@ -121,9 +120,8 @@ namespace MaterialUI.Windows
                 result.Пол = Convert.ToByte(Gender.SelectedValue);
                 result.Адрес = Adres.Text;
                 result.Фото = ImageSourceToBytes(new PngBitmapEncoder(), ProfilePhoto.ImageSource);
-
-
                 Connect.Model.SaveChanges();
+
                 this.Close();
             }
             catch (Exception)

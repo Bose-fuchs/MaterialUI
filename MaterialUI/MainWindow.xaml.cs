@@ -29,6 +29,7 @@ namespace MaterialUI
             Connect.Model = new DateBase.GymDBEntities();
             AppFrame.FrameMain = MainFraim;
 
+            AppFrame.FrameMain.Navigate(new MainPage());
             UpdateStatusAsync();
         }
 
@@ -49,12 +50,7 @@ namespace MaterialUI
 
         private void MainWindowApp_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void Window_Click(object sender, RoutedEventArgs e)
-        {
-            //AppFrame.FrameMain.Navigate(new GymMembership());
+            AppFrame.FrameMain.Navigate(new MainPage());
         }
 
         private void ClientWindow_Click(object sender, RoutedEventArgs e)
@@ -62,9 +58,9 @@ namespace MaterialUI
             AppFrame.FrameMain.Navigate(new ClientList());
         }
 
-        private void Exercise_Click(object sender, RoutedEventArgs e)
+        private void Service_Click(object sender, RoutedEventArgs e)
         {
-
+            AppFrame.FrameMain.Navigate(new ServiceListPage());
         }
 
         private void TrainerWindow_Click(object sender, RoutedEventArgs e)
@@ -85,6 +81,11 @@ namespace MaterialUI
 
                 Connect.Model.SaveChanges();
             });
+        }
+
+        private void GymMembership_Click(object sender, RoutedEventArgs e)
+        {
+            AppFrame.FrameMain.Navigate(new GymmembershipListPage());
         }
     }
 }

@@ -27,11 +27,13 @@ namespace MaterialUI.DateBase
     
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Абонемент> Абонемент { get; set; }
+        public virtual DbSet<ДниНедели> ДниНедели { get; set; }
         public virtual DbSet<К_Карта> К_Карта { get; set; }
         public virtual DbSet<Клиент> Клиент { get; set; }
         public virtual DbSet<Место_Работы> Место_Работы { get; set; }
         public virtual DbSet<Пол> Пол { get; set; }
         public virtual DbSet<Посещения> Посещения { get; set; }
+        public virtual DbSet<Расписание> Расписание { get; set; }
         public virtual DbSet<Статус> Статус { get; set; }
         public virtual DbSet<Тренер> Тренер { get; set; }
         public virtual DbSet<Услуга> Услуга { get; set; }

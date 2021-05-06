@@ -132,9 +132,22 @@
                           Grid.Row="2"
                           Grid.ColumnSpan="2"
                           MinHeight="40">
-                    <DataGrid x:Name="ServicesDataGrid">
-                        
-                    </DataGrid>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Button x:Name="AddServiceButton"
+                                Grid.Row="0"
+                                Width="150"
+                                HorizontalAlignment="Right"/>
+
+                        <DataGrid x:Name="ServicesDataGrid"
+                                  Grid.Row="1">
+
+                        </DataGrid>
+                    </Grid>
                 </Expander>
             </Grid>
         </ScrollViewer>

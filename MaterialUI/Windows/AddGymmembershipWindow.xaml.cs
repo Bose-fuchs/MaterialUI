@@ -74,5 +74,6 @@ namespace MaterialUI.Windows
         {
             this.Close();
         }
+
     }
 }

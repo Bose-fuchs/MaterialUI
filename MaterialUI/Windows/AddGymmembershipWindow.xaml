@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:MaterialUI.Windows"
         mc:Ignorable="d" 
-        Height="300" Width="500" FontFamily="Roboto" 
+        Height="300" Width="520" FontFamily="Roboto" 
         ResizeMode="NoResize" WindowStartupLocation="CenterOwner" 
         WindowStyle="None"
         Title="Добавить абонемент" 
@@ -56,12 +56,12 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="70"/>
             </Grid.RowDefinitions>
-            <Expander Header="Список абонемента"
+            <Expander Header="Список абонементов"
                       IsExpanded="True">
                 <DataGrid x:Name="NameGymMS"
                           CanUserAddRows="False"
                           CanUserDeleteRows="False"
-                          IsReadOnly="True"
+                          IsReadOnly="False"
                           AutoGenerateColumns="False"
                           SelectionUnit="FullRow"
                           SelectionMode="Single"
@@ -69,10 +69,12 @@
                           HeadersVisibility="Column">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Название"
-                                        Binding="{Binding Название}"
-                                        Width="200"/>
+                                            Binding="{Binding Название}"
+                                            Width="100"/>
                         <DataGridTextColumn Header="Длительность (в днях)"
-                                        Binding="{Binding Длительность}"/>
+                                            Binding="{Binding Длительность}"/>
+                        <DataGridTextColumn Header="Стоимость"
+                                            Binding="{Binding Стоимость, StringFormat=f}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Expander>

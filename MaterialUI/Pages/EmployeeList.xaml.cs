@@ -102,10 +102,10 @@ namespace MaterialUI.Pages
             EmployeeDataGrid.ItemsSource = Connect.Model.Тренер.ToList();
         }
 
-        private void CardMenuItem_Click(object sender, RoutedEventArgs e)
+        private void WorkPlan_Click(object sender, RoutedEventArgs e)
         {
-
+            Тренер empoyee = EmployeeDataGrid.SelectedItem as Тренер;
+            AppFrame.FrameMain.Navigate(new WorkPlanEmployee(empoyee));
         }
-
     }
 }

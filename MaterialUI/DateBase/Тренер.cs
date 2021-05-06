@@ -14,7 +14,7 @@ namespace MaterialUI.DateBase
     
     public partial class Тренер
     {
-        public int Id { get; set; }
+        public byte Id { get; set; }
         public string Фамилия { get; set; }
         public string Имя { get; set; }
         public string Отчество { get; set; }
@@ -29,5 +29,6 @@ namespace MaterialUI.DateBase
     
         public virtual Место_Работы Место_Работы { get; set; }
         public virtual Пол Пол1 { get; set; }
+        public virtual Расписание Расписание { get; set; }
     }
 }

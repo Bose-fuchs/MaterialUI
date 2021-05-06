@@ -105,6 +105,9 @@
     <Compile Include="DateBase\Абонемент.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="DateBase\ДниНедели.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="DateBase\К_Карта.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -118,6 +121,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DateBase\Посещения.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DateBase\Расписание.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DateBase\Статус.cs">
@@ -137,6 +143,18 @@
     </Compile>
     <Compile Include="Pages\EmployeeList.xaml.cs">
       <DependentUpon>EmployeeList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\GymmembershipListPage.xaml.cs">
+      <DependentUpon>GymmembershipListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ServiceListPage.xaml.cs">
+      <DependentUpon>ServiceListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\WorkPlanEmployee.xaml.cs">
+      <DependentUpon>WorkPlanEmployee.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\AddGymmembershipWindow.xaml.cs">
       <DependentUpon>AddGymmembershipWindow.xaml</DependentUpon>
@@ -176,6 +194,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\EmployeeList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\GymmembershipListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ServiceListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\WorkPlanEmployee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

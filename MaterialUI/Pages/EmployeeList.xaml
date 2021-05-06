@@ -58,6 +58,13 @@
                                                      Foreground="#2196F3"/>
                         </MenuItem.Icon>
                     </MenuItem>
+                    <MenuItem  x:Name="WorkPlan" Click="WorkPlan_Click">
+                        <MenuItem.Header>График работы</MenuItem.Header>
+                        <MenuItem.Icon>
+                            <materialDesign:PackIcon Kind="Calendar"
+                                                     Foreground="#2196F3"/>
+                        </MenuItem.Icon>
+                    </MenuItem>
                     <MenuItem  x:Name="DeleteMenuItem" Click="RemoveButton_Click">
                         <MenuItem.Header>Удалить</MenuItem.Header>
                         <MenuItem.Icon>
