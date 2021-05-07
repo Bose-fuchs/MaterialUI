@@ -21,6 +21,15 @@
               Background="#FF8522BD"
               MouseLeftButtonDown="NavigationButtons_MouseLeftButtonDown">
 
+            <TextBlock x:Name="ActiveButton"
+                       Text="Главная страница"
+                       Foreground="#fff"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       FontSize="17"
+                       Margin="10,0"
+                       FontWeight="ExtraBlack"/>
+
             <StackPanel Orientation="Horizontal" 
                         Background="{x:Null}"
                         HorizontalAlignment="Right"

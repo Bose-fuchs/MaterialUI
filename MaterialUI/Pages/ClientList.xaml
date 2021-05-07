@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:MaterialUI.Pages"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800" FontFamily="Roboto"
+      d:DesignHeight="450" d:DesignWidth="800" FontFamily="Roboto Bold"
       Title="ClientList">
 
     <Grid   Background="White">

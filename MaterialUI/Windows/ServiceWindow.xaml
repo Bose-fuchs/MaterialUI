@@ -1,0 +1,104 @@
+﻿<Window x:Class="MaterialUI.Windows.ServiceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d" Height="282.031" Width="451.424"
+        FontFamily="Roboto" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="None"
+        Title="Добавить клиента"
+        BorderBrush="#8522BD"
+        BorderThickness="1">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Name="NavigationButtons"
+              Grid.ColumnSpan="2"
+              Background="#FF8522BD"
+              MouseLeftButtonDown="NavigationButtons_MouseLeftButtonDown">
+
+            <StackPanel Orientation="Horizontal" 
+                        Background="{x:Null}"
+                        HorizontalAlignment="Right"
+                        Margin="10,0">
+
+                <Button Name="MinimizeWindow"
+                        Click="MinimizeWindow_Click"
+                        Background="{x:Null}"
+                        BorderBrush="{x:Null}"
+                        Foreground="White"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                        Height="25" Width="25">
+                    <materialDesign:PackIcon Kind="WindowMinimize"></materialDesign:PackIcon>
+                </Button>
+
+
+                <Button Name="ExitButton"
+                        Click="ExitButton_Click"
+                        Background="{x:Null}"
+                        BorderBrush="{x:Null}"
+                        Foreground="White"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                        Height="25" Width="25">
+                    <materialDesign:PackIcon Kind="Power"></materialDesign:PackIcon>
+                </Button>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Left"
+                        VerticalAlignment="Center">
+                <TextBlock Text="Редактор услуг"
+                           Foreground="#fff"
+                           FontFamily="/MaterialUI;component/Resources/Fonts/#Roboto"
+                           Margin="20,0" 
+                           FontWeight="Bold" 
+                           FontSize="14"/>
+            </StackPanel>
+        </Grid>
+
+        <Grid x:Name="DataForm"
+              Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40*"/>
+                <RowDefinition Height="23*"/>
+                <RowDefinition Height="19*"/>
+                <RowDefinition Height="43*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="110*"/>
+                <ColumnDefinition Width="253*"/>
+                <ColumnDefinition Width="130*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox x:Name="NameService"
+                     Grid.Row="1"
+                     Grid.Column="1"
+                     materialDesign:HintAssist.Hint="Назавние услуги"
+                     Height="25"
+                     Text="{Binding Название, Mode=OneWay }"/>
+            <TextBox x:Name="PriceService"
+                     Grid.Row="2"
+                     Grid.Column="1"
+                     materialDesign:HintAssist.Hint="Стоимость"
+                     Height="25"
+                     Text="{Binding Стоимость, Mode=OneWay, StringFormat=f}"/>
+
+            <StackPanel Orientation="Horizontal"
+                        Grid.Row="4"
+                        Grid.Column="1"
+                        HorizontalAlignment="Center">
+                <Button x:Name="SaveButton"
+                        Click="SaveButton_Click"
+                        Content="Сохранить"
+                        Width="110"
+                        Margin="0,0,10,0"/>
+                <Button x:Name="CancelButton"
+                        Click="ExitButton_Click"
+                        Content="Отмена"
+                        Width="110"
+                        Margin="10,0,0,0"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

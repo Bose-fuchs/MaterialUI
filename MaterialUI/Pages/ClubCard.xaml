@@ -8,7 +8,7 @@
       xmlns:materialDesing="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ClubCard" FontFamily="Roboto">
+      Title="ClubCard" FontFamily="Roboto Bold">
 
     <Grid Background="#fff">
         <Grid.RowDefinitions>

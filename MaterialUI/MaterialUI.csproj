@@ -99,6 +99,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DateBase\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DateBase\sp_helpdiagrams_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="DateBase\sysdiagrams.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -171,6 +177,12 @@
     <Compile Include="Windows\EditEmployeeWindow.xaml.cs">
       <DependentUpon>EditEmployeeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\GMshipWindow.xaml.cs">
+      <DependentUpon>GMshipWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ServiceWindow.xaml.cs">
+      <DependentUpon>ServiceWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -230,6 +242,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\EditEmployeeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\GMshipWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ServiceWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

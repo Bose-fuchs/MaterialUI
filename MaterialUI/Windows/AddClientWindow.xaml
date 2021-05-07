@@ -4,7 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        mc:Ignorable="d" Height="480" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="None"
+        mc:Ignorable="d" Height="480" Width="600" ResizeMode="NoResize" 
+        WindowStartupLocation="CenterOwner" 
+        WindowStyle="None" FontFamily="Roboto Bold"
         Title="Добавить клиента"
         BorderBrush="#8522BD"
         BorderThickness="1"> 
@@ -123,7 +125,6 @@
                 
                 <TextBox x:Name="Family" 
                          materialDesign:HintAssist.Hint="Фамилия*"
-                         materialDesign:HintAssist.FontFamily="Roboto Bold"
                          Height="26"
                          Grid.Column="0"
                          VerticalAlignment="Center"
@@ -131,7 +132,6 @@
 
                 <TextBox x:Name="NameCl" 
                          materialDesign:HintAssist.Hint="Имя*"
-                         materialDesign:HintAssist.FontFamily="Roboto Bold"
                          Height="26"
                          Grid.Column="1"
                          VerticalAlignment="Center"
@@ -142,12 +142,10 @@
                             Grid.Column="2">
                     <TextBox x:Name="Patronymic" 
                          materialDesign:HintAssist.Hint="Отчество"
-                         materialDesign:HintAssist.FontFamily="Roboto Bold"
                          VerticalAlignment="Center"/>
                 </StackPanel>
                 <TextBox x:Name="Phone" 
                          materialDesign:HintAssist.Hint="Телефон*"
-                         materialDesign:HintAssist.FontFamily="Roboto Bold"
                          Height="25"
                          Grid.Column="1"
                          Grid.Row="1"
@@ -159,23 +157,20 @@
                             Margin="0,0,10,0"
                             Height="25">
                     <TextBox x:Name="Email" 
-                         materialDesign:HintAssist.Hint="E-mail"
-                         materialDesign:HintAssist.FontFamily="Roboto Bold"
-                         Height="25"
-                         VerticalAlignment="Center"/>
+                            materialDesign:HintAssist.Hint="E-mail"
+                            Height="25"
+                            VerticalAlignment="Center"/>
                 </StackPanel>
 
                 <TextBox x:Name="Multipass" 
-                             materialDesign:HintAssist.Hint="Серия/номер паспорта*"
-                         materialDesign:HintAssist.FontFamily="Roboto Bold"
-                             Height="25"
-                             Grid.Column="2"
-                             Grid.Row="1"
-                             VerticalAlignment="Center"
-                             Margin="10,0,0,0"/>
+                         materialDesign:HintAssist.Hint="Серия/номер паспорта*"
+                         Height="25"
+                         Grid.Column="2"
+                         Grid.Row="1"
+                         VerticalAlignment="Center"
+                         Margin="10,0,0,0"/>
                 <DatePicker x:Name="BirthDay"
                             materialDesign:HintAssist.Hint="Дата рождения*"
-                            materialDesign:HintAssist.FontFamily="Roboto Bold"
                             Grid.Column="0"
                             Grid.Row="2"
                             Margin="0,0,10,0"/>
@@ -183,14 +178,12 @@
                 <ComboBox x:Name="Gender"
                           Grid.Column="1"
                           materialDesign:HintAssist.Hint="Пол*"
-                          materialDesign:HintAssist.FontFamily="Roboto Bold"
                           Margin="10,0,0,0"
                           Grid.Row="2"/>
                 <StackPanel Grid.Row="3"
                             Grid.ColumnSpan="3">
                     <TextBox x:Name="Adres" 
                          materialDesign:HintAssist.Hint="Домашний адрес"
-                         materialDesign:HintAssist.FontFamily="Roboto Bold"
                          TextWrapping="Wrap"
                          AcceptsReturn="True"/>
                 </StackPanel>

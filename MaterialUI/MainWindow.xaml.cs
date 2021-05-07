@@ -29,6 +29,7 @@ namespace MaterialUI
             Connect.Model = new DateBase.GymDBEntities();
             AppFrame.FrameMain = MainFraim;
 
+            ActiveButton.Text = "Главная страница";
             AppFrame.FrameMain.Navigate(new MainPage());
             UpdateStatusAsync();
         }
@@ -50,22 +51,32 @@ namespace MaterialUI
 
         private void MainWindowApp_Click(object sender, RoutedEventArgs e)
         {
+            ActiveButton.Text = "Главная страница";
             AppFrame.FrameMain.Navigate(new MainPage());
         }
 
         private void ClientWindow_Click(object sender, RoutedEventArgs e)
-        { 
+        {
+            ActiveButton.Text = "Список клиентов";
             AppFrame.FrameMain.Navigate(new ClientList());
         }
 
         private void Service_Click(object sender, RoutedEventArgs e)
         {
+            ActiveButton.Text = "Список услуг";
             AppFrame.FrameMain.Navigate(new ServiceListPage());
         }
 
         private void TrainerWindow_Click(object sender, RoutedEventArgs e)
         {
+            ActiveButton.Text = "Список тренеров";
             AppFrame.FrameMain.Navigate(new EmployeeList());
+        }
+
+        private void GymMembership_Click(object sender, RoutedEventArgs e)
+        {
+            ActiveButton.Text = "Список абонементов";
+            AppFrame.FrameMain.Navigate(new GymmembershipListPage());
         }
 
         private async void UpdateStatusAsync()
@@ -81,11 +92,6 @@ namespace MaterialUI
 
                 Connect.Model.SaveChanges();
             });
-        }
-
-        private void GymMembership_Click(object sender, RoutedEventArgs e)
-        {
-            AppFrame.FrameMain.Navigate(new GymmembershipListPage());
         }
     }
 }
