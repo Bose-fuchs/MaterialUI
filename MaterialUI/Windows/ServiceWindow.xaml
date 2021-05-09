@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d" Height="282.031" Width="451.424"
-        FontFamily="Roboto" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="None"
+        FontFamily="Roboto Bold" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="None"
         Title="Добавить клиента"
         BorderBrush="#8522BD"
         BorderThickness="1">

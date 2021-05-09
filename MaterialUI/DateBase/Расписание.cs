@@ -14,11 +14,13 @@ namespace MaterialUI.DateBase
     
     public partial class Расписание
     {
-        public byte Id { get; set; }
+        public int Id { get; set; }
         public byte Тренер { get; set; }
         public byte День { get; set; }
-        public System.TimeSpan С { get; set; }
-        public System.TimeSpan До { get; set; }
+        public System.TimeSpan РаботаС { get; set; }
+        public System.TimeSpan РаботаДо { get; set; }
+        public System.TimeSpan ПерерывС { get; set; }
+        public System.TimeSpan ПерерывДо { get; set; }
     
         public virtual ДниНедели ДниНедели { get; set; }
         public virtual Тренер Тренер1 { get; set; }

@@ -14,6 +14,12 @@ namespace MaterialUI.DateBase
     
     public partial class Тренер
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Тренер()
+        {
+            this.Расписание = new HashSet<Расписание>();
+        }
+    
         public byte Id { get; set; }
         public string Фамилия { get; set; }
         public string Имя { get; set; }
@@ -29,6 +35,7 @@ namespace MaterialUI.DateBase
     
         public virtual Место_Работы Место_Работы { get; set; }
         public virtual Пол Пол1 { get; set; }
-        public virtual Расписание Расписание { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Расписание> Расписание { get; set; }
     }
 }

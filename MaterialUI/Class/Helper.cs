@@ -14,5 +14,6 @@ namespace MaterialUI.Class
         public static Тренер employee {get; set;}
         public static Услуга service { get; set; }
         public static Абонемент gmb { get; set; }
+        public static TimeSpan time { get; set; }
     }
 }

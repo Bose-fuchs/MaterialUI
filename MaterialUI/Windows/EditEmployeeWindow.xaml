@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MaterialUI.Windows"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        mc:Ignorable="d" Height="480" Width="600" FontFamily="Roboto" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="None"
+        mc:Ignorable="d" Height="480" Width="600" FontFamily="Roboto Bold" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="None"
         Title="Добавить клиента"
         BorderBrush="#8522BD"
         BorderThickness="1">
@@ -177,6 +177,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
                     <DatePicker x:Name="BirthDay"
@@ -188,6 +189,11 @@
                               Grid.Column="1"
                               materialDesign:HintAssist.Hint="Пол*"
                               Margin="10,0,0,0"/>
+                    <ComboBox x:Name="PlaceWork"
+                          Grid.Column="2"
+                          materialDesign:HintAssist.Hint="Место работы*"
+                          Margin="10,0,0,0"
+                          Grid.Row="2"/>
 
                 </Grid>
 

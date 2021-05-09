@@ -36,6 +36,10 @@ namespace MaterialUI.Windows
                 Gender.SelectedValuePath = "Id";
                 Gender.DisplayMemberPath = "Название";
                 Gender.ItemsSource = Connect.Model.Пол.ToList();
+
+                PlaceWork.SelectedValuePath = "Id";
+                PlaceWork.DisplayMemberPath = "Название";
+                PlaceWork.ItemsSource = Connect.Model.Место_Работы.ToList();
             }
             catch (Exception)
             {
@@ -126,6 +130,7 @@ namespace MaterialUI.Windows
                 result.ДР = (DateTime)BirthDay.SelectedDate;
                 result.Пол = Convert.ToByte(Gender.SelectedValue);
                 result.Адрес = Adres.Text;
+                result.МестоРаботы = Convert.ToByte(PlaceWork.SelectedValue);
                 result.Фото = ImageSourceToBytes(new PngBitmapEncoder(), ProfilePhoto.ImageSource);
                 Connect.Model.SaveChanges();
 
@@ -155,6 +160,7 @@ namespace MaterialUI.Windows
                 Gender.SelectedValue = employee.Пол;
                 Email.Text = employee.Почта.Trim();
                 Multipass.Text = employee.Паспорт.Trim();
+                PlaceWork.SelectedValue = employee.МестоРаботы;
                 Adres.Text = employee.Адрес.Trim();
                 if (employee.Фото != null)
                 {

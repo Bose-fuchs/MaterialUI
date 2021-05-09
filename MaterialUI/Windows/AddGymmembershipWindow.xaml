@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:MaterialUI.Windows"
         mc:Ignorable="d" 
-        Height="300" Width="520" FontFamily="Roboto" 
+        Height="300" Width="520" FontFamily="Roboto Bold" 
         ResizeMode="NoResize" WindowStartupLocation="CenterOwner" 
         WindowStyle="None"
         Title="Добавить абонемент" 

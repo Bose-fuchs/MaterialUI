@@ -15,9 +15,10 @@ namespace MaterialUI.DateBase
     public partial class Посещения
     {
         public int Id { get; set; }
-        public byte Услуга { get; set; }
-        public int Карта { get; set; }
+        public Nullable<byte> Услуга { get; set; }
+        public Nullable<int> Карта { get; set; }
         public System.DateTime Дата { get; set; }
+        public System.TimeSpan Время { get; set; }
     
         public virtual К_Карта К_Карта { get; set; }
         public virtual Услуга Услуга1 { get; set; }

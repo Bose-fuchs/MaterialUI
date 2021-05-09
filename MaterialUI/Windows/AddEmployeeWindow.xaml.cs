@@ -103,6 +103,7 @@ namespace MaterialUI.Windows
                         Паспорт = Multipass.Text,
                         Адрес = Adres.Text,
                         Пол = Convert.ToByte(Gender.SelectedValue),
+                        МестоРаботы = Convert.ToByte(PlaceWork.SelectedValue),
                         Фото = ImageSourceToBytes(new PngBitmapEncoder(), ProfilePhoto.ImageSource)
                     };
 
