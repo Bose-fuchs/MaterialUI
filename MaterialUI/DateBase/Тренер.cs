@@ -33,8 +33,8 @@ namespace MaterialUI.DateBase
         public byte[] Фото { get; set; }
         public byte МестоРаботы { get; set; }
     
-        public virtual Место_Работы Место_Работы { get; set; }
         public virtual Пол Пол1 { get; set; }
+        public virtual Помещение Помещение { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Расписание> Расписание { get; set; }
     }

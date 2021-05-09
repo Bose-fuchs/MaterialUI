@@ -39,7 +39,7 @@ namespace MaterialUI.Windows
 
                 PlaceWork.SelectedValuePath = "Id";
                 PlaceWork.DisplayMemberPath = "Название";
-                PlaceWork.ItemsSource = Connect.Model.Место_Работы.ToList();
+                PlaceWork.ItemsSource = Connect.Model.Помещение.ToList();
             }
             catch (Exception)
             {

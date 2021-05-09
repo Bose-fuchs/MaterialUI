@@ -18,6 +18,7 @@ namespace MaterialUI.DateBase
         public Клиент()
         {
             this.К_Карта = new HashSet<К_Карта>();
+            this.Посещения = new HashSet<Посещения>();
         }
     
         public int Id { get; set; }
@@ -36,5 +37,7 @@ namespace MaterialUI.DateBase
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<К_Карта> К_Карта { get; set; }
         public virtual Пол Пол1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Посещения> Посещения { get; set; }
     }
 }

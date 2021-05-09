@@ -120,10 +120,10 @@
     <Compile Include="DateBase\Клиент.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="DateBase\Место_Работы.cs">
+    <Compile Include="DateBase\Пол.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="DateBase\Пол.cs">
+    <Compile Include="DateBase\Помещение.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="DateBase\Посещения.cs">

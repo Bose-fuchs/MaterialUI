@@ -59,13 +59,6 @@
           <Property Name="Фото" Type="image" />
           <Property Name="ДатаРегистрации" Type="date" Nullable="false" />
         </EntityType>
-        <EntityType Name="Место_Работы">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Название" Type="nchar" MaxLength="20" Nullable="false" />
-        </EntityType>
         <EntityType Name="Пол">
           <Key>
             <PropertyRef Name="Id" />
@@ -73,15 +66,23 @@
           <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Название" Type="nchar" MaxLength="10" />
         </EntityType>
+        <EntityType Name="Помещение">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="nchar" MaxLength="20" Nullable="false" />
+        </EntityType>
         <EntityType Name="Посещения">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Услуга" Type="tinyint" />
-          <Property Name="Карта" Type="int" />
+          <Property Name="Клиент" Type="int" />
           <Property Name="Дата" Type="date" Nullable="false" />
           <Property Name="Время" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Помещение" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="Расписание">
           <Key>
@@ -179,17 +180,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Посещения_К_Карта">
-          <End Role="К_Карта" Type="Self.К_Карта" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+        <Association Name="FK_Посещения_Клиент">
+          <End Role="Клиент" Type="Self.Клиент" Multiplicity="0..1" />
           <End Role="Посещения" Type="Self.Посещения" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="К_Карта">
+            <Principal Role="Клиент">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Посещения">
-              <PropertyRef Name="Карта" />
+              <PropertyRef Name="Клиент" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Посещения_Помещение">
+          <End Role="Помещение" Type="Self.Помещение" Multiplicity="1" />
+          <End Role="Посещения" Type="Self.Посещения" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Помещение">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Посещения">
+              <PropertyRef Name="Помещение" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -230,10 +241,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Тренер_Место_Работы">
-          <End Role="Место_Работы" Type="Self.Место_Работы" Multiplicity="1" />
+          <End Role="Помещение" Type="Self.Помещение" Multiplicity="1" />
           <End Role="Тренер" Type="Self.Тренер" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Место_Работы">
+            <Principal Role="Помещение">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Тренер">
@@ -291,8 +302,8 @@
           <EntitySet Name="ДниНедели" EntityType="Self.ДниНедели" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="К_Карта" EntityType="Self.К_Карта" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Клиент" EntityType="Self.Клиент" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Место_Работы" EntityType="Self.Место_Работы" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Пол" EntityType="Self.Пол" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Помещение" EntityType="Self.Помещение" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Посещения" EntityType="Self.Посещения" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Расписание" EntityType="Self.Расписание" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Статус" EntityType="Self.Статус" Schema="dbo" store:Type="Tables" />
@@ -314,8 +325,12 @@
             <End Role="Пол" EntitySet="Пол" />
             <End Role="Клиент" EntitySet="Клиент" />
           </AssociationSet>
-          <AssociationSet Name="FK_Посещения_К_Карта" Association="Self.FK_Посещения_К_Карта">
-            <End Role="К_Карта" EntitySet="К_Карта" />
+          <AssociationSet Name="FK_Посещения_Клиент" Association="Self.FK_Посещения_Клиент">
+            <End Role="Клиент" EntitySet="Клиент" />
+            <End Role="Посещения" EntitySet="Посещения" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Посещения_Помещение" Association="Self.FK_Посещения_Помещение">
+            <End Role="Помещение" EntitySet="Помещение" />
             <End Role="Посещения" EntitySet="Посещения" />
           </AssociationSet>
           <AssociationSet Name="FK_Посещения_Услуга" Association="Self.FK_Посещения_Услуга">
@@ -331,7 +346,7 @@
             <End Role="Расписание" EntitySet="Расписание" />
           </AssociationSet>
           <AssociationSet Name="FK_Тренер_Место_Работы" Association="Self.FK_Тренер_Место_Работы">
-            <End Role="Место_Работы" EntitySet="Место_Работы" />
+            <End Role="Помещение" EntitySet="Помещение" />
             <End Role="Тренер" EntitySet="Тренер" />
           </AssociationSet>
           <AssociationSet Name="FK_Тренер_Пол" Association="Self.FK_Тренер_Пол">
@@ -380,8 +395,8 @@
           <EntitySet Name="ДниНедели" EntityType="GymDBModel.ДниНедели" />
           <EntitySet Name="К_Карта" EntityType="GymDBModel.К_Карта" />
           <EntitySet Name="Клиент" EntityType="GymDBModel.Клиент" />
-          <EntitySet Name="Место_Работы" EntityType="GymDBModel.Место_Работы" />
           <EntitySet Name="Пол" EntityType="GymDBModel.Пол" />
+          <EntitySet Name="Помещение" EntityType="GymDBModel.Помещение" />
           <EntitySet Name="Посещения" EntityType="GymDBModel.Посещения" />
           <EntitySet Name="Расписание" EntityType="GymDBModel.Расписание" />
           <EntitySet Name="Статус" EntityType="GymDBModel.Статус" />
@@ -403,20 +418,24 @@
             <End Role="Статус" EntitySet="Статус" />
             <End Role="К_Карта" EntitySet="К_Карта" />
           </AssociationSet>
-          <AssociationSet Name="FK_Посещения_К_Карта" Association="GymDBModel.FK_Посещения_К_Карта">
-            <End Role="К_Карта" EntitySet="К_Карта" />
-            <End Role="Посещения" EntitySet="Посещения" />
-          </AssociationSet>
           <AssociationSet Name="FK_Клиент_Пол" Association="GymDBModel.FK_Клиент_Пол">
             <End Role="Пол" EntitySet="Пол" />
             <End Role="Клиент" EntitySet="Клиент" />
           </AssociationSet>
-          <AssociationSet Name="FK_Тренер_Место_Работы" Association="GymDBModel.FK_Тренер_Место_Работы">
-            <End Role="Место_Работы" EntitySet="Место_Работы" />
-            <End Role="Тренер" EntitySet="Тренер" />
+          <AssociationSet Name="FK_Посещения_Клиент" Association="GymDBModel.FK_Посещения_Клиент">
+            <End Role="Клиент" EntitySet="Клиент" />
+            <End Role="Посещения" EntitySet="Посещения" />
           </AssociationSet>
           <AssociationSet Name="FK_Тренер_Пол" Association="GymDBModel.FK_Тренер_Пол">
             <End Role="Пол" EntitySet="Пол" />
+            <End Role="Тренер" EntitySet="Тренер" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Посещения_Помещение" Association="GymDBModel.FK_Посещения_Помещение">
+            <End Role="Помещение" EntitySet="Помещение" />
+            <End Role="Посещения" EntitySet="Посещения" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Тренер_Место_Работы" Association="GymDBModel.FK_Тренер_Место_Работы">
+            <End Role="Помещение" EntitySet="Помещение" />
             <End Role="Тренер" EntitySet="Тренер" />
           </AssociationSet>
           <AssociationSet Name="FK_Посещения_Услуга" Association="GymDBModel.FK_Посещения_Услуга">
@@ -480,7 +499,6 @@
           <NavigationProperty Name="Абонемент1" Relationship="GymDBModel.FK_К_Карта_Абонемент" FromRole="К_Карта" ToRole="Абонемент" />
           <NavigationProperty Name="Клиент1" Relationship="GymDBModel.FK_К_Карта_Клиент" FromRole="К_Карта" ToRole="Клиент" />
           <NavigationProperty Name="Статус1" Relationship="GymDBModel.FK_К_Карта_Статус" FromRole="К_Карта" ToRole="Статус" />
-          <NavigationProperty Name="Посещения" Relationship="GymDBModel.FK_Посещения_К_Карта" FromRole="К_Карта" ToRole="Посещения" />
         </EntityType>
         <EntityType Name="Клиент">
           <Key>
@@ -500,14 +518,7 @@
           <Property Name="ДатаРегистрации" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="К_Карта" Relationship="GymDBModel.FK_К_Карта_Клиент" FromRole="Клиент" ToRole="К_Карта" />
           <NavigationProperty Name="Пол1" Relationship="GymDBModel.FK_Клиент_Пол" FromRole="Клиент" ToRole="Пол" />
-        </EntityType>
-        <EntityType Name="Место_Работы">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Название" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Тренер" Relationship="GymDBModel.FK_Тренер_Место_Работы" FromRole="Место_Работы" ToRole="Тренер" />
+          <NavigationProperty Name="Посещения" Relationship="GymDBModel.FK_Посещения_Клиент" FromRole="Клиент" ToRole="Посещения" />
         </EntityType>
         <EntityType Name="Пол">
           <Key>
@@ -518,16 +529,27 @@
           <NavigationProperty Name="Клиент" Relationship="GymDBModel.FK_Клиент_Пол" FromRole="Пол" ToRole="Клиент" />
           <NavigationProperty Name="Тренер" Relationship="GymDBModel.FK_Тренер_Пол" FromRole="Пол" ToRole="Тренер" />
         </EntityType>
+        <EntityType Name="Помещение">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Посещения" Relationship="GymDBModel.FK_Посещения_Помещение" FromRole="Помещение" ToRole="Посещения" />
+          <NavigationProperty Name="Тренер" Relationship="GymDBModel.FK_Тренер_Место_Работы" FromRole="Помещение" ToRole="Тренер" />
+        </EntityType>
         <EntityType Name="Посещения">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Услуга" Type="Byte" />
-          <Property Name="Карта" Type="Int32" />
+          <Property Name="Клиент" Type="Int32" />
           <Property Name="Дата" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Время" Type="Time" Nullable="false" Precision="7" />
-          <NavigationProperty Name="К_Карта" Relationship="GymDBModel.FK_Посещения_К_Карта" FromRole="Посещения" ToRole="К_Карта" />
+          <Property Name="Помещение" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="Клиент1" Relationship="GymDBModel.FK_Посещения_Клиент" FromRole="Посещения" ToRole="Клиент" />
+          <NavigationProperty Name="Помещение1" Relationship="GymDBModel.FK_Посещения_Помещение" FromRole="Посещения" ToRole="Помещение" />
           <NavigationProperty Name="Услуга1" Relationship="GymDBModel.FK_Посещения_Услуга" FromRole="Посещения" ToRole="Услуга" />
         </EntityType>
         <EntityType Name="Расписание">
@@ -568,8 +590,8 @@
           <Property Name="Пол" Type="Byte" Nullable="false" />
           <Property Name="Фото" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="МестоРаботы" Type="Byte" Nullable="false" />
-          <NavigationProperty Name="Место_Работы" Relationship="GymDBModel.FK_Тренер_Место_Работы" FromRole="Тренер" ToRole="Место_Работы" />
           <NavigationProperty Name="Пол1" Relationship="GymDBModel.FK_Тренер_Пол" FromRole="Тренер" ToRole="Пол" />
+          <NavigationProperty Name="Помещение" Relationship="GymDBModel.FK_Тренер_Место_Работы" FromRole="Тренер" ToRole="Помещение" />
           <NavigationProperty Name="Расписание" Relationship="GymDBModel.FK_Расписание_Тренер1" FromRole="Тренер" ToRole="Расписание" />
         </EntityType>
         <EntityType Name="Услуга">
@@ -633,20 +655,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Посещения_К_Карта">
-          <End Type="GymDBModel.К_Карта" Role="К_Карта" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="GymDBModel.Посещения" Role="Посещения" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="К_Карта">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Посещения">
-              <PropertyRef Name="Карта" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Клиент_Пол">
           <End Type="GymDBModel.Пол" Role="Пол" Multiplicity="1" />
           <End Type="GymDBModel.Клиент" Role="Клиент" Multiplicity="*" />
@@ -659,15 +667,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Тренер_Место_Работы">
-          <End Type="GymDBModel.Место_Работы" Role="Место_Работы" Multiplicity="1" />
-          <End Type="GymDBModel.Тренер" Role="Тренер" Multiplicity="*" />
+        <Association Name="FK_Посещения_Клиент">
+          <End Type="GymDBModel.Клиент" Role="Клиент" Multiplicity="0..1" />
+          <End Type="GymDBModel.Посещения" Role="Посещения" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Место_Работы">
+            <Principal Role="Клиент">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Тренер">
-              <PropertyRef Name="МестоРаботы" />
+            <Dependent Role="Посещения">
+              <PropertyRef Name="Клиент" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -680,6 +688,30 @@
             </Principal>
             <Dependent Role="Тренер">
               <PropertyRef Name="Пол" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Посещения_Помещение">
+          <End Type="GymDBModel.Помещение" Role="Помещение" Multiplicity="1" />
+          <End Type="GymDBModel.Посещения" Role="Посещения" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Помещение">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Посещения">
+              <PropertyRef Name="Помещение" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Тренер_Место_Работы">
+          <End Type="GymDBModel.Помещение" Role="Помещение" Multiplicity="1" />
+          <End Type="GymDBModel.Тренер" Role="Тренер" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Помещение">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Тренер">
+              <PropertyRef Name="МестоРаботы" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -797,14 +829,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Место_Работы">
-            <EntityTypeMapping TypeName="GymDBModel.Место_Работы">
-              <MappingFragment StoreEntitySet="Место_Работы">
-                <ScalarProperty Name="Название" ColumnName="Название" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Пол">
             <EntityTypeMapping TypeName="GymDBModel.Пол">
               <MappingFragment StoreEntitySet="Пол">
@@ -813,12 +837,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Помещение">
+            <EntityTypeMapping TypeName="GymDBModel.Помещение">
+              <MappingFragment StoreEntitySet="Помещение">
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Посещения">
             <EntityTypeMapping TypeName="GymDBModel.Посещения">
               <MappingFragment StoreEntitySet="Посещения">
+                <ScalarProperty Name="Помещение" ColumnName="Помещение" />
                 <ScalarProperty Name="Время" ColumnName="Время" />
                 <ScalarProperty Name="Дата" ColumnName="Дата" />
-                <ScalarProperty Name="Карта" ColumnName="Карта" />
+                <ScalarProperty Name="Клиент" ColumnName="Клиент" />
                 <ScalarProperty Name="Услуга" ColumnName="Услуга" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

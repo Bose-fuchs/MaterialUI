@@ -12,17 +12,20 @@ namespace MaterialUI.DateBase
     using System;
     using System.Collections.Generic;
     
-    public partial class Место_Работы
+    public partial class Помещение
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Место_Работы()
+        public Помещение()
         {
+            this.Посещения = new HashSet<Посещения>();
             this.Тренер = new HashSet<Тренер>();
         }
     
         public byte Id { get; set; }
         public string Название { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Посещения> Посещения { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Тренер> Тренер { get; set; }
     }

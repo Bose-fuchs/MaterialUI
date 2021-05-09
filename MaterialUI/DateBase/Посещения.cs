@@ -16,11 +16,13 @@ namespace MaterialUI.DateBase
     {
         public int Id { get; set; }
         public Nullable<byte> Услуга { get; set; }
-        public Nullable<int> Карта { get; set; }
+        public Nullable<int> Клиент { get; set; }
         public System.DateTime Дата { get; set; }
         public System.TimeSpan Время { get; set; }
+        public byte Помещение { get; set; }
     
-        public virtual К_Карта К_Карта { get; set; }
+        public virtual Клиент Клиент1 { get; set; }
+        public virtual Помещение Помещение1 { get; set; }
         public virtual Услуга Услуга1 { get; set; }
     }
 }

@@ -9,8 +9,72 @@
       Title="MainPage">
 
     <Grid>
-        <Expander Header="Расписание">
-            <TextBlock Text="123"/>
+        <Expander Header="Расписание"
+                  IsExpanded="True">
+            <DataGrid x:Name="MainDG"
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Клиент1.Фамилия}"/>
+                                    <TextBlock Text="{Binding Клиент1.Имя}"/>
+                                    <TextBlock Text="{Binding Клиент1.Отчество}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="ФИО"
+                                           Width="300"
+                                           TextAlignment="Center"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.HeaderTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Время"
+                                        Binding="{Binding Время}"/>
+                    <DataGridTextColumn Header="Дата"
+                                        Binding="{Binding Дата, StringFormat='MM/dd/yy'}"/>
+                    <DataGridTextColumn Header="Куда"
+                                        Binding="{Binding Помещение1.Название}"/>
+
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox Content="Абонемент"
+                                              IsChecked="True"
+                                              x:Name="CheckGMs">
+                                        <CheckBox.Style>
+                                            <Style TargetType="{x:Type CheckBox}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementName=CheckGMs, Path=IsChecked}"
+                                                                 Value="False">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </CheckBox.Style>
+                                    </CheckBox>
+                                    <TextBlock Text="{Binding Услуга1.Название}"
+                                               x:Name="CheckTextBlock"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="Основание"
+                                           Width="300"
+                                           TextAlignment="Center"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.HeaderTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
         </Expander>
     </Grid>
 </Page>

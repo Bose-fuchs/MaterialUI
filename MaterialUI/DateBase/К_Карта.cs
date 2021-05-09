@@ -14,12 +14,6 @@ namespace MaterialUI.DateBase
     
     public partial class К_Карта
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public К_Карта()
-        {
-            this.Посещения = new HashSet<Посещения>();
-        }
-    
         public int Id { get; set; }
         public int Клиент { get; set; }
         public byte Абонемент { get; set; }
@@ -30,7 +24,5 @@ namespace MaterialUI.DateBase
         public virtual Абонемент Абонемент1 { get; set; }
         public virtual Клиент Клиент1 { get; set; }
         public virtual Статус Статус1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Посещения> Посещения { get; set; }
     }
 }
