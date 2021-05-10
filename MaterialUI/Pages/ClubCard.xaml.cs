@@ -26,6 +26,7 @@ namespace MaterialUI.Pages
             Helper.client = клиент;
 
             GymmembershipDataGrid.ItemsSource = Connect.Model.К_Карта.Where(x => x.Клиент == клиент.Id).OrderBy(x => x.Статус1.Название).ToList();
+            ServicesDataGrid.ItemsSource = Connect.Model.Посещения.Where(x => x.Клиент == клиент.Id).Where(x => x.Услуга != null).ToList();
             FIO = клиент.Фамилия.Trim() + " " + клиент.Имя.Trim() + " " + клиент.Отчество;
             Date = клиент.ДатаРегистрации.ToString("yyyy.MM.dd");
         }

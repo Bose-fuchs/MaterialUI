@@ -4,77 +4,138 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MaterialUI.Pages"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" FontFamily="Roboto Bold"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MainPage">
 
-    <Grid>
-        <Expander Header="Расписание"
-                  IsExpanded="True">
-            <DataGrid x:Name="MainDG"
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="10*"/>
+            </Grid.RowDefinitions>
+            <Expander Header="Расписание"
+                      IsExpanded="True"
+                      Grid.Row="0">
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="110"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="110"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="С"
+                               Grid.Column="0"
+                               TextAlignment="Center"
+                               VerticalAlignment="Center" />
+                        <DatePicker Name="OneDateFilter"
+                                Grid.Column="1"
+                                SelectedDateChanged="OneDateFilter_SelectedDateChanged"
+                                materialDesign:HintAssist.Hint="Выберите дату"/>
+                        <TextBlock Text="По"
+                               Grid.Column="2"
+                               TextAlignment="Center"
+                               VerticalAlignment="Center"/>
+                        <DatePicker Name="TwoDateFilter"
+                                Grid.Column="3"
+                                SelectedDateChanged="TwoDateFilter_SelectedDateChanged"
+                                materialDesign:HintAssist.Hint="Выберите дату"/>
+                        <Button x:Name="AddVisit" 
+                                Click="AddVisit_Click"
+                                Grid.Column="5"
+                                Foreground="Black"
+                                Background="{x:Null}"
+                                BorderThickness="0"
+                                ToolTip="Добавить запись">
+                            <materialDesign:PackIcon Kind="Add"/>
+                        </Button>
+                    </Grid>
+                    <DataGrid x:Name="MainDG"
                       AutoGenerateColumns="False"
                       CanUserAddRows="False"
                       CanUserDeleteRows="False"
                       IsReadOnly="True">
-                <DataGrid.Columns>
-                    <DataGridTemplateColumn>
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Клиент1.Фамилия}"/>
-                                    <TextBlock Text="{Binding Клиент1.Имя}"/>
-                                    <TextBlock Text="{Binding Клиент1.Отчество}"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                        <DataGridTemplateColumn.HeaderTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="ФИО"
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Клиент1.Фамилия}"/>
+                                            <TextBlock Text="{Binding Клиент1.Имя}"/>
+                                            <TextBlock Text="{Binding Клиент1.Отчество}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.HeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="ФИО"
                                            Width="300"
                                            TextAlignment="Center"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.HeaderTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Время"
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.HeaderTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Время"
                                         Binding="{Binding Время}"/>
-                    <DataGridTextColumn Header="Дата"
-                                        Binding="{Binding Дата, StringFormat='MM/dd/yy'}"/>
-                    <DataGridTextColumn Header="Куда"
+                            <DataGridTextColumn Header="Дата"
+                                        Binding="{Binding Дата, StringFormat='dd.MM.yyyy'}"/>
+                            <DataGridTextColumn Header="Куда"
                                         Binding="{Binding Помещение1.Название}"/>
 
-                    <DataGridTemplateColumn>
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <CheckBox Content="Абонемент"
-                                              IsChecked="True"
-                                              x:Name="CheckGMs">
-                                        <CheckBox.Style>
-                                            <Style TargetType="{x:Type CheckBox}">
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding ElementName=CheckGMs, Path=IsChecked}"
-                                                                 Value="False">
-                                                        <Setter Property="Visibility" Value="Collapsed"/>
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </CheckBox.Style>
-                                    </CheckBox>
-                                    <TextBlock Text="{Binding Услуга1.Название}"
-                                               x:Name="CheckTextBlock"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                        <DataGridTemplateColumn.HeaderTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="Основание"
-                                           Width="300"
+                            <DataGridTemplateColumn>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock>
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="Text" Value="{Binding Услуга1.Название}"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Услуга}" Value="{x:Null}">
+                                                                <Setter Property="Text" Value="Абонемент"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+
+                                <DataGridTemplateColumn.HeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="Основание"
                                            TextAlignment="Center"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.HeaderTemplate>
-                    </DataGridTemplateColumn>
-                </DataGrid.Columns>
-            </DataGrid>
-        </Expander>
-    </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.HeaderTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem  x:Name="MoreRowItem" Click="MoreRowItem_Click">
+                                    <MenuItem.Header>Подробнее</MenuItem.Header>
+                                    <MenuItem.Icon>
+                                        <materialDesign:PackIcon Kind="Edit"
+                                                     Foreground="#2196F3"/>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                                <MenuItem  x:Name="ClubCardItem" Click="ClubCardItem_Click">
+                                    <MenuItem.Header>Клубная карта</MenuItem.Header>
+                                    <MenuItem.Icon>
+                                        <materialDesign:PackIcon Kind="Card"
+                                                     Foreground="#2196F3"/>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
+                    </DataGrid>
+                </StackPanel>
+            </Expander>
+            <Expander Header="Отчеты"
+                      Grid.Row="1"/>
+        </Grid>
+    </ScrollViewer>
 </Page>

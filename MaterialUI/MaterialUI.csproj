@@ -180,6 +180,9 @@
     <Compile Include="Windows\GMshipWindow.xaml.cs">
       <DependentUpon>GMshipWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\NewVisit.xaml.cs">
+      <DependentUpon>NewVisit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ServiceWindow.xaml.cs">
       <DependentUpon>ServiceWindow.xaml</DependentUpon>
     </Compile>
@@ -249,6 +252,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\GMshipWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\NewVisit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

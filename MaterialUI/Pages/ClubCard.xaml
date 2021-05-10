@@ -128,29 +128,37 @@
                         </Button>
                     </StackPanel>
                 </Expander>
+                
                 <Expander Header="Услуги"
                           Grid.Row="2"
-                          Grid.ColumnSpan="2"
-                          MinHeight="40">
+                          Grid.ColumnSpan="2">
                     <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="50"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-
                         <Button x:Name="AddServiceButton"
                                 Grid.Row="0"
                                 Width="150"
                                 HorizontalAlignment="Right"/>
 
                         <DataGrid x:Name="ServicesDataGrid"
-                                  Grid.Row="1">
-
+                                  Grid.Row="1"
+                                  AutoGenerateColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Название"
+                                                    Binding="{Binding Услуга1.Название}"/>
+                                <DataGridTextColumn Header="Место"
+                                                    Binding="{Binding Помещение1.Название}"/>
+                                <DataGridTextColumn Header="Время"
+                                        Binding="{Binding Время}"/>
+                                <DataGridTextColumn Header="Дата"
+                                        Binding="{Binding Дата, StringFormat='dd.MM.yyyy'}"/>
+                                <DataGridTextColumn Header="Куда"
+                                        Binding="{Binding Помещение1.Название}"/>
+                            </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
                 </Expander>
             </Grid>
         </ScrollViewer>
+        
         <Button x:Name="BackBatton"
                 Click="BackBatton_Click"
                 Grid.Row="1"

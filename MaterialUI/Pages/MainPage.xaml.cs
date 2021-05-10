@@ -1,4 +1,6 @@
 ﻿using MaterialUI.Class;
+using MaterialUI.DateBase;
+using MaterialUI.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +27,54 @@ namespace MaterialUI.Pages
         {
             InitializeComponent();
 
-            MainDG.ItemsSource = Connect.Model.Посещения.ToList();
+            //List<Посещения> посещения = Connect.Model.Посещения.ToList();
+
+            //foreach (var item in посещения)
+            //{
+            //    if (item.Услуга != null)
+            //        item.Услуга1.Название.Trim();
+            //}
+
+            MainDG.ItemsSource = Connect.Model.Посещения.Where(x => x.Дата == DateTime.Today).OrderBy(x => x.Время).ToList();
+        }
+
+        private void OneDateFilter_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MainDG.ItemsSource = Connect.Model.Посещения.Where(x => x.Дата >= OneDateFilter.SelectedDate).ToList();
+        }
+
+        private void TwoDateFilter_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MainDG.ItemsSource = Connect.Model.Посещения.Where(x => x.Дата <= TwoDateFilter.SelectedDate).ToList();
+        }
+
+        private void TodayRecords_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MoreRowItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ClubCardItem_Click(object sender, RoutedEventArgs e)
+        {
+            Посещения card = MainDG.SelectedItem as Посещения;
+            Клиент client = Connect.Model.Клиент.Where(x => x.Id == card.Клиент).FirstOrDefault();
+
+            client.Id = (int)card.Клиент;
+ 
+            AppFrame.FrameMain.Navigate(new ClubCard(client));
+        }
+
+        private void AddVisit_Click(object sender, RoutedEventArgs e)
+        {
+
+            NewVisit newVisit = new NewVisit();
+            newVisit.ShowDialog();
+
+            MainDG.ItemsSource = Connect.Model.Посещения.Where(x => x.Дата == DateTime.Today).OrderBy(x => x.Время).ToList();
         }
     }
 }
