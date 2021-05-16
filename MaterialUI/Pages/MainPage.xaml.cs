@@ -27,30 +27,22 @@ namespace MaterialUI.Pages
         {
             InitializeComponent();
 
-            //List<Посещения> посещения = Connect.Model.Посещения.ToList();
-
-            //foreach (var item in посещения)
-            //{
-            //    if (item.Услуга != null)
-            //        item.Услуга1.Название.Trim();
-            //}
-
             MainDG.ItemsSource = Connect.Model.Посещения.Where(x => x.Дата == DateTime.Today).OrderBy(x => x.Время).ToList();
+
+            TodayRecords.IsChecked = true;
+
         }
 
         private void OneDateFilter_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
+            TodayRecords.IsChecked = false;
             MainDG.ItemsSource = Connect.Model.Посещения.Where(x => x.Дата >= OneDateFilter.SelectedDate).ToList();
         }
 
         private void TwoDateFilter_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            MainDG.ItemsSource = Connect.Model.Посещения.Where(x => x.Дата <= TwoDateFilter.SelectedDate).ToList();
-        }
-
-        private void TodayRecords_Click(object sender, RoutedEventArgs e)
-        {
-
+            TodayRecords.IsChecked = false;
+            MainDG.ItemsSource = Connect.Model.Посещения.Where(x => x.Дата >= OneDateFilter.SelectedDate).Where(x => x.Дата <= TwoDateFilter.SelectedDate).ToList();
         }
 
         private void MoreRowItem_Click(object sender, RoutedEventArgs e)
@@ -70,11 +62,33 @@ namespace MaterialUI.Pages
 
         private void AddVisit_Click(object sender, RoutedEventArgs e)
         {
+            Клиент клиент = null;
 
-            NewVisit newVisit = new NewVisit();
+            NewVisit newVisit = new NewVisit(клиент);
             newVisit.ShowDialog();
 
-            MainDG.ItemsSource = Connect.Model.Посещения.Where(x => x.Дата == DateTime.Today).OrderBy(x => x.Время).ToList();
+            MainDG.ItemsSource = Connect.Model.Посещения.Where(x => x.Дата >= DateTime.Today).OrderBy(x => x.Дата).ToList();
         }
+
+        private void AddVisitInCM_Click(object sender, RoutedEventArgs e)
+        {
+            Посещения посещения = MainDG.SelectedItem as Посещения;
+
+            Клиент клиент = Connect.Model.Клиент.Where(x => x.Id == посещения.Клиент).FirstOrDefault();
+
+            NewVisit newVisit = new NewVisit(клиент);
+            newVisit.ShowDialog();
+
+            MainDG.ItemsSource = Connect.Model.Посещения.Where(x => x.Дата >= DateTime.Today).OrderBy(x => x.Дата).ToList();
+        }
+
+        private void TodayRecords_Checked(object sender, RoutedEventArgs e)
+        {
+            OneDateFilter.SelectedDate = null;
+            TwoDateFilter.SelectedDate = null;
+            MainDG.ItemsSource = Connect.Model.Посещения.Where(x => x.Дата == DateTime.Today).OrderBy(x => x.Дата).ToList();
+
+        }
+
     }
 }

@@ -15,33 +15,41 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="10*"/>
             </Grid.RowDefinitions>
-            <Expander Header="Расписание"
+            <Expander Header="История посещений"
                       IsExpanded="True"
                       Grid.Row="0">
                 <StackPanel>
                     <Grid>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
                             <ColumnDefinition Width="50"/>
-                            <ColumnDefinition Width="110"/>
+                            <ColumnDefinition Width="120"/>
                             <ColumnDefinition Width="50"/>
-                            <ColumnDefinition Width="110"/>
-                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="120"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
+
+                        <CheckBox Content="Записи на сегодня"
+                                  x:Name="TodayRecords"
+                                  Checked="TodayRecords_Checked"
+                                  Margin="20,0,0,0"/>
+
                         <TextBlock Text="С"
-                               Grid.Column="0"
+                               Grid.Column="1"
                                TextAlignment="Center"
                                VerticalAlignment="Center" />
+                        
                         <DatePicker Name="OneDateFilter"
-                                Grid.Column="1"
+                                Grid.Column="2"
                                 SelectedDateChanged="OneDateFilter_SelectedDateChanged"
                                 materialDesign:HintAssist.Hint="Выберите дату"/>
+                        
                         <TextBlock Text="По"
-                               Grid.Column="2"
+                               Grid.Column="3"
                                TextAlignment="Center"
                                VerticalAlignment="Center"/>
                         <DatePicker Name="TwoDateFilter"
-                                Grid.Column="3"
+                                Grid.Column="4"
                                 SelectedDateChanged="TwoDateFilter_SelectedDateChanged"
                                 materialDesign:HintAssist.Hint="Выберите дату"/>
                         <Button x:Name="AddVisit" 
@@ -54,11 +62,13 @@
                             <materialDesign:PackIcon Kind="Add"/>
                         </Button>
                     </Grid>
+                    
                     <DataGrid x:Name="MainDG"
-                      AutoGenerateColumns="False"
-                      CanUserAddRows="False"
-                      CanUserDeleteRows="False"
-                      IsReadOnly="True">
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="False"
+                              CanUserDeleteRows="False"
+                              IsReadOnly="True">
+                        
                         <DataGrid.Columns>
                             <DataGridTemplateColumn>
                                 <DataGridTemplateColumn.CellTemplate>
@@ -79,11 +89,12 @@
                                 </DataGridTemplateColumn.HeaderTemplate>
                             </DataGridTemplateColumn>
                             <DataGridTextColumn Header="Время"
-                                        Binding="{Binding Время}"/>
+                                                Binding="{Binding Время}"
+                                                Width="100"/>
                             <DataGridTextColumn Header="Дата"
-                                        Binding="{Binding Дата, StringFormat='dd.MM.yyyy'}"/>
+                                                Binding="{Binding Дата, StringFormat='dd.MM.yyyy'}"/>
                             <DataGridTextColumn Header="Куда"
-                                        Binding="{Binding Помещение1.Название}"/>
+                                                Binding="{Binding Помещение1.Название}"/>
 
                             <DataGridTemplateColumn>
                                 <DataGridTemplateColumn.CellTemplate>
@@ -129,11 +140,19 @@
                                                      Foreground="#2196F3"/>
                                     </MenuItem.Icon>
                                 </MenuItem>
+                                <MenuItem  x:Name="AddVisitInCM" Click="AddVisitInCM_Click">
+                                    <MenuItem.Header>Повторная запись</MenuItem.Header>
+                                    <MenuItem.Icon>
+                                        <materialDesign:PackIcon Kind="Add"
+                                                     Foreground="#2196F3"/>
+                                    </MenuItem.Icon>
+                                </MenuItem>
                             </ContextMenu>
                         </DataGrid.ContextMenu>
                     </DataGrid>
                 </StackPanel>
             </Expander>
+            
             <Expander Header="Отчеты"
                       Grid.Row="1"/>
         </Grid>

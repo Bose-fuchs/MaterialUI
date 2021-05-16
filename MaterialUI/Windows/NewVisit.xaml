@@ -52,7 +52,7 @@
                         VerticalAlignment="Center">
                 <TextBlock Text="Запись клиента"
                            Foreground="#fff"
-                           FontFamily="/MaterialUI;component/Resources/Fonts/#Roboto"
+                           FontFamily="Roboto Bold"
                            Margin="20,0" 
                            FontWeight="Bold" 
                            FontSize="14"/>
@@ -64,12 +64,16 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="10*"/>
                     <RowDefinition Height="10*"/>
-                    <RowDefinition Height="100*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="50*"/>
                 </Grid.RowDefinitions>
 
                 <Expander Header="Выбор клиента"
+                          x:Name="SelectorClient"
                           Grid.Row="0"
-                          IsExpanded="False">
+                          Background="#F0F0F0"
+                          IsExpanded="True">
                     <Grid   Background="White">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40"/>
@@ -86,6 +90,7 @@
                                   HorizontalScrollBarVisibility="Hidden"
                                   Width="800"                                  
                                   MouseDoubleClick="DataGridRow_MouseDoubleClick"
+                                  SelectionChanged="ClientDataGrid_SelectionChanged"
                                   IsReadOnly="True">
                             <DataGrid.Columns>
                                 <DataGridTemplateColumn>
@@ -203,11 +208,181 @@
 
                 </Expander>
 
-                <Expander Header="Основание"
+                <Expander x:Name="Purpose" 
+                          Header="Основание"
                           Grid.Row="1"
-                          IsExpanded="False"
-                          Background="Green">
+                          IsExpanded="False"    
+                          IsEnabled="False">
+                    <Grid Margin="20,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="40"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Row="0"
+                                    Grid.ColumnSpan="3"
+                                    Orientation="Horizontal"
+                                    VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="Alert"
+                                                     Foreground="YellowGreen"
+                                                     Margin="0,0,10,0"/>
+                            <TextBlock Text="Запись клиента можно на основании абонемента или одной из услуг"/>
+                        </StackPanel>
+                        <CheckBox Content="Абонемент"
+                                  x:Name="GMsCheckBox"
+                                  IsEnabled="False"
+                                  Grid.Column="0"
+                                  Grid.Row="1"
+                                  Checked="GMsCheckBox_Checked"/>
+                        
+                        <TextBlock Text="или " 
+                                   TextAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Grid.Column="1"
+                                   Grid.Row="1"
+                                   FontSize="12"/>
+                        
+                        <ComboBox x:Name="SelectorService"
+                                  Grid.Column="2"
+                                  Grid.Row="1"
+                                  SelectionChanged="SelectorService_SelectionChanged"
+                                  materialDesign:HintAssist.Hint="Выберите услугу"
+                                  Width="200"
+                                  HorizontalAlignment="Left"/>
+                    </Grid>
+                </Expander>
+                
+                <Expander Header="Место"
+                          x:Name="Place"
+                          Grid.Row="2"
+                          Background="#F0F0F0">
+                    <Grid Margin="20,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
 
+
+                        <StackPanel Grid.Row="0"
+                                    Orientation="Horizontal"
+                                    VerticalAlignment="Center">
+                            <TextBlock Text="Записать в   "
+                                       VerticalAlignment="Center"/>
+                            <ComboBox x:Name="PlaceName"
+                                      Width="150"
+                                      SelectionChanged="PlaceName_SelectionChanged"/>
+                        </StackPanel>
+
+                        <TextBlock Text="Сегодня работает(ют)" 
+                                   Grid.Row="1"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   FontSize="15"/>
+                        
+                        <DataGrid x:Name="EmployeeWork"
+                                  AutoGenerateColumns="False"
+                                  Grid.Row="2"
+                                  IsReadOnly="True"
+                                  CanUserAddRows="False"
+                                  CanUserDeleteRows="False">
+                            
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Тренер1.Фамилия}"/>
+                                                <TextBlock Text="{Binding Тренер1.Имя}"/>
+                                                <TextBlock Text="{Binding Тренер1.Отчество}"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="ФИО"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.HeaderTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding РаботаС, StringFormat=t}"/>
+                                                <TextBlock Text=" - "/>
+                                                <TextBlock Text="{Binding РаботаДо}"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="Время работы"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.HeaderTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding ПерерывС}"/>
+                                                <TextBlock Text=" - "/>
+                                                <TextBlock Text="{Binding ПерерывДо}"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="Перерыв"/>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.HeaderTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </Expander>
+
+                <Expander Header="Дата и время"
+                          Grid.Row="3">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal"
+                                    VerticalAlignment="Center">
+                            <TextBlock Text="Дата посещения:"
+                                       VerticalAlignment="Center"/>
+                            <DatePicker Name="DateVisit"
+                                    Background="red"
+                                    Width="150"
+                                        Margin="10,0"/>
+                            <TextBlock Text="Время посещения:"
+                                       VerticalAlignment="Center"/>
+                            <materialDesign:TimePicker x:Name="TimeVisit"
+                                                   Width="150"
+                                                       Margin="10,0"/>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal"
+                                    Grid.Row="1"
+                                    HorizontalAlignment="Right">
+                            <Button x:Name="AddRecord"
+                                    Click="AddRecord_Click"
+                                    Width="150"
+                                    Content="Записать"
+                                    Margin="10,0"/>
+                            <Button x:Name="Cancel"
+                                    Click="Cancel_Click"
+                                    Width="150"
+                                    Content="Отмена"
+                                    Margin="10,0"/>
+                        </StackPanel>
+                    </Grid>
                 </Expander>
             </Grid>
         </ScrollViewer>

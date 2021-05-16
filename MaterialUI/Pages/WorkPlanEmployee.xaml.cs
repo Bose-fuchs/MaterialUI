@@ -29,10 +29,14 @@ namespace MaterialUI.Pages
             InitializeComponent();
             FIO = тренер.Фамилия.Trim() + " " + тренер.Имя.Trim() + " " + тренер.Отчество.Trim();
             Helper.employee = тренер;
-            WorkPlanDataGrid.ItemsSource = Connect.Model.Расписание.Where(x => x.Тренер == тренер.Id).ToList();
+            WorkPlanDataGrid.ItemsSource = Connect.Model.Расписание.Where(x => x.Тренер == тренер.Id).OrderBy(x => x.День).ToList();
+
             SelectorDay.ItemsSource = Connect.Model.ДниНедели.ToList();
             SelectorDay.DisplayMemberPath = "Название";
             SelectorDay.SelectedValuePath = "Id";
+
+            PlaceWorkText.Text = тренер.Помещение.Название;
+
             DataContext = this;
 
         }
@@ -88,19 +92,22 @@ namespace MaterialUI.Pages
 
         private void AddDay_Click(object sender, RoutedEventArgs e)
         {
-            Расписание расписание = new Расписание()
+            if (SelectorDay.SelectedIndex != -1)
             {
-                День = Convert.ToByte(SelectorDay.SelectedValue),
-                Тренер = Helper.employee.Id,
-                ПерерывС = new TimeSpan(13, 0, 0),
-                ПерерывДо = new TimeSpan(14, 0, 0),
-                РаботаС = new TimeSpan(9, 0, 0),
-                РаботаДо = new TimeSpan(18, 0, 0)
-            };
+                Расписание расписание = new Расписание()
+                {
+                    День = Convert.ToByte(SelectorDay.SelectedValue),
+                    Тренер = Helper.employee.Id,
+                    ПерерывС = new TimeSpan(13, 0, 0),
+                    ПерерывДо = new TimeSpan(14, 0, 0),
+                    РаботаС = new TimeSpan(9, 0, 0),
+                    РаботаДо = new TimeSpan(18, 0, 0)
+                };
 
-            Connect.Model.Расписание.Add(расписание);
-            Connect.Model.SaveChanges();
-            WorkPlanDataGrid.ItemsSource = Connect.Model.Расписание.Where(x => x.Тренер == Helper.employee.Id).OrderBy(x => x.День).ToList();
+                Connect.Model.Расписание.Add(расписание);
+                Connect.Model.SaveChanges();
+                WorkPlanDataGrid.ItemsSource = Connect.Model.Расписание.Where(x => x.Тренер == Helper.employee.Id).OrderBy(x => x.День).ToList();
+            }
         }
     }
 }

@@ -133,13 +133,10 @@
                           Grid.Row="2"
                           Grid.ColumnSpan="2">
                     <Grid>
-                        <Button x:Name="AddServiceButton"
-                                Grid.Row="0"
-                                Width="150"
-                                HorizontalAlignment="Right"/>
 
                         <DataGrid x:Name="ServicesDataGrid"
                                   Grid.Row="1"
+                                  Margin="15,0"
                                   AutoGenerateColumns="False">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Название"

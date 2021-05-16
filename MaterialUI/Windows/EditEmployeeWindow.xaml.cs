@@ -139,7 +139,7 @@ namespace MaterialUI.Windows
             catch (Exception)
             {
 
-                throw;
+
             }
         }
 
