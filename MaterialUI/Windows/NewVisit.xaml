@@ -348,7 +348,7 @@
 
                 <Expander Header="Дата и время"
                           Grid.Row="3">
-                    <Grid>
+                    <Grid Margin="20">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40"/>
                             <RowDefinition Height="40"/>

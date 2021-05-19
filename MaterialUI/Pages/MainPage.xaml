@@ -152,9 +152,73 @@
                     </DataGrid>
                 </StackPanel>
             </Expander>
-            
+
             <Expander Header="Отчеты"
-                      Grid.Row="1"/>
+                      Grid.Row="1">
+                <Grid Grid.Row="1"
+                      Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0"
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center">
+
+                        <Button x:Name="GMsReport"
+                                Click="GMsReport_Click"
+                                Background="#FFA46FE4" 
+                                BorderBrush="#FFCD21F3"
+                                Margin="0,0,20,0">
+                            <Grid Width="150">
+                                <materialDesign:PackIcon Kind="Report"
+                                                 VerticalAlignment="Center"/>
+                                <TextBlock Text="По абонементам"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+                            </Grid>
+                        </Button>
+
+                        <Button x:Name="ServiceReport"
+                                Click="ServiceReport_Click"
+                                Background="#FFA46FE4" 
+                                BorderBrush="#FFCD21F3"
+                                Margin="0,0,20,0">
+                            <Grid Width="150">
+                                <materialDesign:PackIcon Kind="Report"
+                                                 VerticalAlignment="Center"/>
+                                <TextBlock Text="По услугам"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+                            </Grid>
+                        </Button>
+
+                        <Button x:Name="PlaceReport"
+                                Click="PlaceReport_Click"
+                                Background="#FFA46FE4" 
+                                BorderBrush="#FFCD21F3"
+                                Margin="0,0,20,0">
+                            <Grid Width="150">
+                                <materialDesign:PackIcon Kind="Report"
+                                                 VerticalAlignment="Center"/>
+                                <TextBlock Text="По помещениям"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+                            </Grid>
+                        </Button>
+
+                    </StackPanel>
+                    
+                    
+
+                </Grid>
+            </Expander>
+
         </Grid>
     </ScrollViewer>
 </Page>

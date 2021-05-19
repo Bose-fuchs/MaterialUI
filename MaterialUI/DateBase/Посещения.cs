@@ -19,7 +19,7 @@ namespace MaterialUI.DateBase
         public Nullable<int> Клиент { get; set; }
         public System.DateTime Дата { get; set; }
         public System.TimeSpan Время { get; set; }
-        public byte Помещение { get; set; }
+        public Nullable<byte> Помещение { get; set; }
     
         public virtual Клиент Клиент1 { get; set; }
         public virtual Помещение Помещение1 { get; set; }

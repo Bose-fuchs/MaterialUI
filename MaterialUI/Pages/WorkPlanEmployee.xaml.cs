@@ -109,5 +109,11 @@ namespace MaterialUI.Pages
                 WorkPlanDataGrid.ItemsSource = Connect.Model.Расписание.Where(x => x.Тренер == Helper.employee.Id).OrderBy(x => x.День).ToList();
             }
         }
+
+        private void PrintWorkPlan_Click(object sender, RoutedEventArgs e)
+        {
+            PrintDialog print = new PrintDialog();
+            print.ShowDialog();
+        }
     }
 }

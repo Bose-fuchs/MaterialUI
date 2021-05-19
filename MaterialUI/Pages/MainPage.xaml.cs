@@ -67,7 +67,7 @@ namespace MaterialUI.Pages
             NewVisit newVisit = new NewVisit(клиент);
             newVisit.ShowDialog();
 
-            MainDG.ItemsSource = Connect.Model.Посещения.Where(x => x.Дата >= DateTime.Today).OrderBy(x => x.Дата).ToList();
+            MainDG.ItemsSource = Connect.Model.Посещения.Where(x => x.Дата == DateTime.Today).OrderBy(x => x.Время).ToList();
         }
 
         private void AddVisitInCM_Click(object sender, RoutedEventArgs e)
@@ -90,5 +90,20 @@ namespace MaterialUI.Pages
 
         }
 
+        private void GMsReport_Click(object sender, RoutedEventArgs e)
+        {
+            GMsReportWindow reportWindow = new GMsReportWindow();
+            reportWindow.Show();
+        }
+
+        private void ServiceReport_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void PlaceReport_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

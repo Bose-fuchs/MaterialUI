@@ -82,7 +82,7 @@
           <Property Name="Клиент" Type="int" />
           <Property Name="Дата" Type="date" Nullable="false" />
           <Property Name="Время" Type="time" Precision="7" Nullable="false" />
-          <Property Name="Помещение" Type="tinyint" Nullable="false" />
+          <Property Name="Помещение" Type="tinyint" />
         </EntityType>
         <EntityType Name="Расписание">
           <Key>
@@ -193,7 +193,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Посещения_Помещение">
-          <End Role="Помещение" Type="Self.Помещение" Multiplicity="1" />
+          <End Role="Помещение" Type="Self.Помещение" Multiplicity="0..1" />
           <End Role="Посещения" Type="Self.Посещения" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Помещение">
@@ -547,7 +547,7 @@
           <Property Name="Клиент" Type="Int32" />
           <Property Name="Дата" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Время" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="Помещение" Type="Byte" Nullable="false" />
+          <Property Name="Помещение" Type="Byte" />
           <NavigationProperty Name="Клиент1" Relationship="GymDBModel.FK_Посещения_Клиент" FromRole="Посещения" ToRole="Клиент" />
           <NavigationProperty Name="Помещение1" Relationship="GymDBModel.FK_Посещения_Помещение" FromRole="Посещения" ToRole="Помещение" />
           <NavigationProperty Name="Услуга1" Relationship="GymDBModel.FK_Посещения_Услуга" FromRole="Посещения" ToRole="Услуга" />
@@ -692,7 +692,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Посещения_Помещение">
-          <End Type="GymDBModel.Помещение" Role="Помещение" Multiplicity="1" />
+          <End Type="GymDBModel.Помещение" Role="Помещение" Multiplicity="0..1" />
           <End Type="GymDBModel.Посещения" Role="Посещения" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Помещение">

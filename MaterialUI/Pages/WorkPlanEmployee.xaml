@@ -19,8 +19,8 @@
 
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="130"/>
-                <ColumnDefinition Width="278"/>
+                <ColumnDefinition Width="225"/>
+                <ColumnDefinition Width="287"/>
                 <ColumnDefinition Width="93"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
@@ -42,7 +42,7 @@
                        Height="20" 
                        TextAlignment="Left"
                        FontSize="14"
-                       Margin="25,15,25,16"/>
+                       Margin="126,15,25,16"/>
 
             <TextBlock Text="{Binding FIO}"
                        Grid.Row="1"
@@ -50,7 +50,7 @@
                        Height="20" 
                        TextAlignment="Left"
                        FontSize="14"
-                       Margin="105,15,0,16" Grid.ColumnSpan="2"/>
+                       Margin="205,15,0,16" Grid.ColumnSpan="2"/>
 
             <TextBlock Text="Работает в:"
                        Grid.Row="1"
@@ -64,8 +64,10 @@
                        Grid.Row="1"
                        Grid.Column="3"
                        VerticalAlignment="Center" 
-                       Height="14"
-                       HorizontalAlignment="Left" Margin="0,19,0,18" Width="0"/>
+                       HorizontalAlignment="Left"
+                       FontSize="14"
+                       Height="20"/>
+
         </Grid>
 
         <StackPanel Grid.Row="1" Orientation="Vertical"
@@ -131,7 +133,7 @@
                         <MenuItem  x:Name="DeleteItem" Click="DeleteItem_Click">
                             <MenuItem.Header>Удалить</MenuItem.Header>
                             <MenuItem.Icon>
-                                <materialDesign:PackIcon Kind="Add"
+                                <materialDesign:PackIcon Kind="Delete"
                                                      Foreground="#2196F3"/>
                             </MenuItem.Icon>
                         </MenuItem>
@@ -153,6 +155,14 @@
                     <materialDesign:PackIcon Kind="Add"
                                          Foreground="Black"/>
                 </Button>
+                <Button x:Name="PrintWorkPlan"
+                        Click="PrintWorkPlan_Click"
+                        Width="100"
+                        Background="{x:Null}"
+                        BorderThickness="0">
+                    <materialDesign:PackIcon Kind="Printer"
+                                         Foreground="Black"/>
+                </Button>
             </StackPanel>
         </StackPanel>
 
@@ -165,5 +175,6 @@
             <materialDesign:PackIcon Kind="ArrowBack"
                                      Foreground="Black"/>
         </Button>
+
     </Grid>
 </Page>

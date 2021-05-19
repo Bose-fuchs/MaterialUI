@@ -179,33 +179,38 @@ namespace MaterialUI.Windows
                     Клиент = Helper.client.Id,
                     Дата = (DateTime)DateVisit.SelectedDate,
                     Время = (TimeSpan)(TimeVisit.SelectedTime - DateTime.Today),
-                    Помещение = Convert.ToByte(PlaceName.SelectedIndex + 1)
+                    Помещение = Convert.ToByte(PlaceName.SelectedValue),
+                    Услуга = null
                 };
 
                 Connect.Model.Посещения.Add(visit);
                 Connect.Model.SaveChanges();
                 this.Close();
-            }
-
-            if (GMsCheckBox.IsChecked == false
+            } else
+            {
+                if (GMsCheckBox.IsChecked == false
                 && ClientDataGrid.SelectedIndex != -1
                 && SelectorService.SelectedIndex != -1
                 && DateVisit.SelectedDate != null
-                && TimeVisit.SelectedTime != null
-                && PlaceName.SelectedIndex != -1)
-            {
-                visit = new Посещения()
+                && TimeVisit.SelectedTime != null)
                 {
-                    Клиент = Helper.client.Id,
-                    Дата = (DateTime)DateVisit.SelectedDate,
-                    Время = (TimeSpan)(TimeVisit.SelectedTime - DateTime.Today),
-                    Помещение = Convert.ToByte(PlaceName.SelectedIndex + 1),
-                    Услуга = Convert.ToByte(SelectorService.SelectedIndex + 1)
-                };
+                    visit = new Посещения()
+                    {
+                        Клиент = Helper.client.Id,
+                        Дата = (DateTime)DateVisit.SelectedDate,
+                        Время = (TimeSpan)(TimeVisit.SelectedTime - DateTime.Today),
+                        Помещение = null,
+                        Услуга = Convert.ToByte(SelectorService.SelectedValue)
+                    };
 
-                Connect.Model.Посещения.Add(visit);
-                Connect.Model.SaveChanges();
-                this.Close();
+                    Connect.Model.Посещения.Add(visit);
+                    Connect.Model.SaveChanges();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Обязательные поля не заполнены", "Внимание", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
 
         }
