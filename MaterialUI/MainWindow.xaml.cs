@@ -1,20 +1,12 @@
 ﻿using MaterialUI.Class;
-using MaterialUI.DateBase;
+using MaterialUI.Database;
 using MaterialUI.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MaterialUI
 {
@@ -26,7 +18,10 @@ namespace MaterialUI
         public MainWindow()
         {
             InitializeComponent();
-            Connect.Model = new DateBase.GymDBEntities();
+            // При необходимости изменять GymDBEntities()
+            Connect.Model = new GymDBEntities();
+
+            // Остальное не трогать
             AppFrame.FrameMain = MainFraim;
 
             ActiveButton.Text = "Главная страница";
@@ -92,6 +87,11 @@ namespace MaterialUI
 
                 Connect.Model.SaveChanges();
             });
+        }
+
+        private void Place_Click(object sender, RoutedEventArgs e)
+        {
+            AppFrame.FrameMain.Navigate(new ListPacePage());
         }
     }
 }

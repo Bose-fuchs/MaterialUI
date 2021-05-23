@@ -7,23 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MaterialUI.DateBase
+namespace MaterialUI.Database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class ДниНедели
+    public partial class Посещения
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ДниНедели()
-        {
-            this.Расписание = new HashSet<Расписание>();
-        }
+        public int Id { get; set; }
+        public Nullable<byte> Услуга { get; set; }
+        public Nullable<int> Клиент { get; set; }
+        public System.DateTime Дата { get; set; }
+        public System.TimeSpan Время { get; set; }
+        public Nullable<byte> Помещение { get; set; }
     
-        public byte Id { get; set; }
-        public string Название { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Расписание> Расписание { get; set; }
+        public virtual Клиент Клиент1 { get; set; }
+        public virtual Помещение Помещение1 { get; set; }
+        public virtual Услуга Услуга1 { get; set; }
     }
 }

@@ -74,9 +74,8 @@
             </Grid.Effect>
 
             <Grid Background="#FFA46FE4">
-                <TextBlock Text="Gym System" 
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center" FontFamily="/MaterialUI;component/Resources/Fonts/#WS Simple Gallifreyan"/>
+                <Image Source="Resources\Images\grandLogo.png"
+                       Width="100"/>
             </Grid>
 
             <StackPanel Grid.Row="1">
@@ -144,6 +143,19 @@
                         <materialDesign:PackIcon Kind="ServiceToolbox"
                                                  VerticalAlignment="Center"/>
                         <TextBlock Text="Услуги"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+                    </Grid>
+                </Button>
+
+                <Button x:Name="Place"
+                        Margin="10"
+                        Background="#FFA46FE4" 
+                        BorderBrush="#FFCD21F3" Click="Place_Click">
+                    <Grid Width="150">
+                        <materialDesign:PackIcon Kind="Room"
+                                                 VerticalAlignment="Center"/>
+                        <TextBlock Text="Помещения"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"/>
                     </Grid>

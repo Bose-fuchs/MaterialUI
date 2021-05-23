@@ -7,35 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MaterialUI.DateBase
+namespace MaterialUI.Database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Тренер
+    public partial class Услуга
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Тренер()
+        public Услуга()
         {
-            this.Расписание = new HashSet<Расписание>();
+            this.Посещения = new HashSet<Посещения>();
         }
     
         public byte Id { get; set; }
-        public string Фамилия { get; set; }
-        public string Имя { get; set; }
-        public string Отчество { get; set; }
-        public System.DateTime ДР { get; set; }
-        public string Телефон { get; set; }
-        public string Почта { get; set; }
-        public string Адрес { get; set; }
-        public string Паспорт { get; set; }
-        public byte Пол { get; set; }
-        public byte[] Фото { get; set; }
-        public byte МестоРаботы { get; set; }
+        public string Название { get; set; }
+        public decimal Стоимость { get; set; }
     
-        public virtual Пол Пол1 { get; set; }
-        public virtual Помещение Помещение { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Расписание> Расписание { get; set; }
+        public virtual ICollection<Посещения> Посещения { get; set; }
     }
 }

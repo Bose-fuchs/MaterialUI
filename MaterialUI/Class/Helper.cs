@@ -1,4 +1,4 @@
-﻿using MaterialUI.DateBase;
+﻿using MaterialUI.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +15,6 @@ namespace MaterialUI.Class
         public static Услуга service { get; set; }
         public static Абонемент gmb { get; set; }
         public static TimeSpan time { get; set; }
+        public static Помещение place { get; set; }
     }
 }

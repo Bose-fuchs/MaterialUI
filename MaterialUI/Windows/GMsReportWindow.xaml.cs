@@ -1,5 +1,5 @@
 ﻿using MaterialUI.Class;
-using MaterialUI.DateBase;
+using MaterialUI.Database;
 using MaterialUI.Pages;
 using QRCoder;
 using System;
@@ -69,9 +69,9 @@ namespace MaterialUI.Windows
 
         private void ClubCardItem_Click(object sender, RoutedEventArgs e)
         {
-            //К_Карта card = GymmembershipDataGrid.SelectedItem as К_Карта;
-            //Клиент client = Connect.Model.Клиент.FirstOrDefault(x => x.Id == card.Клиент);
-            //AppFrame.FrameMain.Navigate(new ClubCard(client));
+            К_Карта card = GymmembershipDataGrid.SelectedItem as К_Карта;
+            Клиент client = Connect.Model.Клиент.FirstOrDefault(x => x.Id == card.Клиент);
+            AppFrame.FrameMain.Navigate(new ClubCard(client));
         }
 
 
@@ -86,9 +86,8 @@ namespace MaterialUI.Windows
                 ClearDayCount.Visibility = Visibility.Visible;
             }
 
-            //GymmembershipDataGrid.ItemsSource = Connect.Model.К_Карта.Where(x => x.Статус == 1).Where(x => x.ДатаОкончания - DateTime.Today > Convert.ToInt32(CountDayOfEnd)))
-
-            //ClientDataGrid.ItemsSource = Connect.Model.Клиент.Where(x => x.Фамилия.Contains(SearchString.Text)).ToList();
+            // FIXME
+            GymmembershipDataGrid.ItemsSource = Connect.Model.К_Карта.Where(x => x.Статус == 1).Where(x => x.ДатаОкончания - DateTime.Now < new TimeSpan(Convert.ToInt32(CountDayOfEnd.Text), 0, 0, 0)).ToList();
         }
 
         private void PrintButto1n_Click(object sender, RoutedEventArgs e)
@@ -113,7 +112,7 @@ namespace MaterialUI.Windows
                 ClearSearchStrin.Visibility = Visibility.Visible;
             }
 
-            //ClientDataGrid.ItemsSource = Connect.Model.Клиент.Where(x => x.Фамилия.Contains(SearchString.Text)).ToList();
+            GymmembershipDataGrid.ItemsSource = Connect.Model.К_Карта.Where(x => x.Статус == 1).Where(x => x.Клиент1.Фамилия.Contains(SearchString.Text)).ToList();
         }
 
         // Очистка строки поиска

@@ -7,25 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MaterialUI.DateBase
+namespace MaterialUI.Database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Абонемент
+    public partial class Помещение
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Абонемент()
+        public Помещение()
         {
-            this.К_Карта = new HashSet<К_Карта>();
+            this.Посещения = new HashSet<Посещения>();
+            this.Тренер = new HashSet<Тренер>();
         }
     
         public byte Id { get; set; }
         public string Название { get; set; }
-        public short Длительность { get; set; }
-        public decimal Стоимость { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<К_Карта> К_Карта { get; set; }
+        public virtual ICollection<Посещения> Посещения { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Тренер> Тренер { get; set; }
     }
 }

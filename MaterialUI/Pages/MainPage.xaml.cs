@@ -1,5 +1,5 @@
 ﻿using MaterialUI.Class;
-using MaterialUI.DateBase;
+using MaterialUI.Database;
 using MaterialUI.Windows;
 using System;
 using System.Collections.Generic;
@@ -98,12 +98,16 @@ namespace MaterialUI.Pages
 
         private void ServiceReport_Click(object sender, RoutedEventArgs e)
         {
-
+            ServiceReportWindow serviceReport = new ServiceReportWindow();
+            serviceReport.ShowDialog();
         }
 
-        private void PlaceReport_Click(object sender, RoutedEventArgs e)
+        private void PrintVisitList_Click(object sender, RoutedEventArgs e)
         {
-
+            PrintDialog printDialog = new PrintDialog();
+            printDialog.CurrentPageEnabled = true;
+            printDialog.ShowDialog();
         }
+
     }
 }

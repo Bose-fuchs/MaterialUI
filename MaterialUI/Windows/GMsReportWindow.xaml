@@ -72,15 +72,15 @@
                   Background="White"
                   Width="800">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="350"/>
-                    <ColumnDefinition Width="350"/>
+                    <ColumnDefinition Width="330"/>
+                    <ColumnDefinition Width="330"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <Grid Grid.Column="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="20"/>
-                        <ColumnDefinition/>
+                        <ColumnDefinition Width ="*"/>
                         <ColumnDefinition Width="31"/>
                     </Grid.ColumnDefinitions>
 
@@ -180,8 +180,7 @@
                       AutoGenerateColumns="False"
                       CanUserAddRows="False"
                       IsReadOnly="True"
-                      Margin="15,40,15,0"
-                      Grid.Row="0">
+                      Grid.Row="2">
                 <DataGrid.Columns>
 
                     <DataGridTemplateColumn>

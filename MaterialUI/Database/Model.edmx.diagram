@@ -7,7 +7,7 @@
       <Diagram DiagramId="142a723e620d4b4f8a4495f3c3fa0412" Name="Diagram1" ZoomLevel="89">
         <EntityTypeShape EntityType="GymDBModel.sysdiagrams" Width="1.5" PointX="8.75" PointY="1.125" />
         <EntityTypeShape EntityType="GymDBModel.Абонемент" Width="1.5" PointX="3.75" PointY="15.25" />
-        <EntityTypeShape EntityType="GymDBModel.ДниНедели" Width="1.5" PointX="6" PointY="1.5" />
+        <EntityTypeShape EntityType="GymDBModel.ДниНедели" Width="1.5" PointX="6" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="GymDBModel.К_Карта" Width="1.5" PointX="6" PointY="8.625" />
         <EntityTypeShape EntityType="GymDBModel.Клиент" Width="1.5" PointX="3.75" PointY="8.125" />
         <EntityTypeShape EntityType="GymDBModel.Пол" Width="1.5" PointX="1.5" PointY="9.125" />

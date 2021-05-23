@@ -7,22 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MaterialUI.DateBase
+namespace MaterialUI.Database
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Расписание
+    public partial class sysdiagrams
     {
-        public int Id { get; set; }
-        public byte Тренер { get; set; }
-        public byte День { get; set; }
-        public System.TimeSpan РаботаС { get; set; }
-        public System.TimeSpan РаботаДо { get; set; }
-        public System.TimeSpan ПерерывС { get; set; }
-        public System.TimeSpan ПерерывДо { get; set; }
-    
-        public virtual ДниНедели ДниНедели { get; set; }
-        public virtual Тренер Тренер1 { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

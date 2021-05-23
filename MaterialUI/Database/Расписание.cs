@@ -7,16 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MaterialUI.DateBase
+namespace MaterialUI.Database
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_helpdiagrams_Result
+    public partial class Расписание
     {
-        public string Database { get; set; }
-        public string Name { get; set; }
-        public int ID { get; set; }
-        public string Owner { get; set; }
-        public int OwnerID { get; set; }
+        public int Id { get; set; }
+        public byte Тренер { get; set; }
+        public byte День { get; set; }
+        public System.TimeSpan РаботаС { get; set; }
+        public System.TimeSpan РаботаДо { get; set; }
+        public System.TimeSpan ПерерывС { get; set; }
+        public System.TimeSpan ПерерывДо { get; set; }
+    
+        public virtual ДниНедели ДниНедели { get; set; }
+        public virtual Тренер Тренер1 { get; set; }
     }
 }

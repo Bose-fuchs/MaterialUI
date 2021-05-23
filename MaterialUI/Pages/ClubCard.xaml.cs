@@ -1,5 +1,5 @@
 ﻿using MaterialUI.Class;
-using MaterialUI.DateBase;
+using MaterialUI.Database;
 using MaterialUI.Windows;
 using System;
 using System.Collections.Generic;
@@ -17,6 +17,8 @@ namespace MaterialUI.Pages
 
         public string FIO { get; set; }
         public string Date { get; set; }
+        public string AmountG { get; set; }
+        public string AmountS { get; set; }
 
         public ClubCard(Клиент клиент)
         {
@@ -24,6 +26,32 @@ namespace MaterialUI.Pages
 
             DataContext = this;
             Helper.client = клиент;
+
+
+            int amount = 0;
+            int count = клиент.К_Карта.Count;
+
+            List<К_Карта> list = Connect.Model.К_Карта.Where(x => x.Клиент == клиент.Id).ToList();
+
+            foreach (var item in list)
+            {
+                amount += Convert.ToInt32(item.Абонемент1.Стоимость);
+            }
+
+            AmountG = "Количество преобретенных абонементов: " + count + ", общая стоимость: " + amount + " рублей";
+
+            count = 0;
+            amount = 0;
+
+            List<Посещения> visit = Connect.Model.Посещения.Where(x => x.Клиент == клиент.Id).Where(x => x.Услуга != null).ToList();
+
+            count = visit.Count;
+
+            foreach (var item in visit)
+            {
+                amount += Convert.ToInt32(item.Услуга1.Стоимость);
+            }
+            AmountS = "Количество преобретенных услуг: " + count + ", общая стоимость: " + amount + " рублей";
 
             GymmembershipDataGrid.ItemsSource = Connect.Model.К_Карта.Where(x => x.Клиент == клиент.Id).OrderBy(x => x.Статус1.Название).ToList();
             ServicesDataGrid.ItemsSource = Connect.Model.Посещения.Where(x => x.Клиент == клиент.Id).Where(x => x.Услуга != null).ToList();

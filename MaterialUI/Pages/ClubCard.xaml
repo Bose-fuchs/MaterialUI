@@ -116,16 +116,27 @@
                                 </DataGridTemplateColumn>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <Button x:Name="AddGymmembership"
+
+                            <TextBlock Text="{Binding AmountG}"
+                                       x:Name="AmountGMs"
+                                       HorizontalAlignment="Left"
+                                       FontSize="13"
+                                       FontWeight="ExtraBold"
+                                       Margin="20,30,0,0"/>
+                            
+                            <Button x:Name="AddGymmembership"
                                 Width="100"
                                 HorizontalAlignment="Right"
                                 Background="{x:Null}"
                                 BorderThickness="0" 
-                                FontWeight="Bold" Height="35"
-                                FontSize="20" Click="AddGymmembership_Click">
-                            <materialDesing:PackIcon Kind="Add"
+                                FontWeight="Bold" 
+                                Height="35"
+                                FontSize="20" 
+                                Click="AddGymmembership_Click">
+                                <materialDesing:PackIcon Kind="Add"
                                                      Foreground="Gray" FontSize="20"/>
-                        </Button>
+                            </Button>
+
                     </StackPanel>
                 </Expander>
                 
@@ -133,9 +144,15 @@
                           Grid.Row="2"
                           Grid.ColumnSpan="2">
                     <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="30"/>
+                        </Grid.RowDefinitions>
 
                         <DataGrid x:Name="ServicesDataGrid"
-                                  Grid.Row="1"
+                                  CanUserAddRows="False"
+                                  IsReadOnly="True"
+                                  Grid.Row="0"
                                   Margin="15,0"
                                   AutoGenerateColumns="False">
                             <DataGrid.Columns>
@@ -151,6 +168,10 @@
                                         Binding="{Binding Помещение1.Название}"/>
                             </DataGrid.Columns>
                         </DataGrid>
+                        <TextBlock x:Name="AmountService"
+                                   Text="{Binding AmountS}"
+                                   Grid.Row="1"
+                                   Margin="20,10,0,0"/>
                     </Grid>
                 </Expander>
             </Grid>

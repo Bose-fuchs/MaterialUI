@@ -38,12 +38,12 @@
                                Grid.Column="1"
                                TextAlignment="Center"
                                VerticalAlignment="Center" />
-                        
+
                         <DatePicker Name="OneDateFilter"
                                 Grid.Column="2"
                                 SelectedDateChanged="OneDateFilter_SelectedDateChanged"
                                 materialDesign:HintAssist.Hint="Выберите дату"/>
-                        
+
                         <TextBlock Text="По"
                                Grid.Column="3"
                                TextAlignment="Center"
@@ -58,17 +58,30 @@
                                 Foreground="Black"
                                 Background="{x:Null}"
                                 BorderThickness="0"
+                                Width="150"
+                                HorizontalAlignment="Left"
                                 ToolTip="Добавить запись">
                             <materialDesign:PackIcon Kind="Add"/>
                         </Button>
+                        <Button x:Name="PrintVisitList" 
+                                Click="PrintVisitList_Click"
+                                Grid.Column="6"
+                                Foreground="Black"
+                                Background="{x:Null}"
+                                BorderThickness="0"
+                                Width="150"
+                                HorizontalAlignment="Right"
+                                ToolTip="Распечатать лист посещений">
+                            <materialDesign:PackIcon Kind="Printer"/>
+                        </Button>
                     </Grid>
-                    
+
                     <DataGrid x:Name="MainDG"
                               AutoGenerateColumns="False"
                               CanUserAddRows="False"
                               CanUserDeleteRows="False"
                               IsReadOnly="True">
-                        
+
                         <DataGrid.Columns>
                             <DataGridTemplateColumn>
                                 <DataGridTemplateColumn.CellTemplate>
@@ -198,23 +211,9 @@
                             </Grid>
                         </Button>
 
-                        <Button x:Name="PlaceReport"
-                                Click="PlaceReport_Click"
-                                Background="#FFA46FE4" 
-                                BorderBrush="#FFCD21F3"
-                                Margin="0,0,20,0">
-                            <Grid Width="150">
-                                <materialDesign:PackIcon Kind="Report"
-                                                 VerticalAlignment="Center"/>
-                                <TextBlock Text="По помещениям"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"/>
-                            </Grid>
-                        </Button>
-
                     </StackPanel>
-                    
-                    
+
+
 
                 </Grid>
             </Expander>

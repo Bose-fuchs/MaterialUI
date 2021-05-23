@@ -7,22 +7,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MaterialUI.DateBase
+namespace MaterialUI.Database
 {
     using System;
     using System.Collections.Generic;
-    
-    public partial class Посещения
+    using System.Data.Entity;
+
+    public partial class К_Карта
     {
         public int Id { get; set; }
-        public Nullable<byte> Услуга { get; set; }
-        public Nullable<int> Клиент { get; set; }
-        public System.DateTime Дата { get; set; }
-        public System.TimeSpan Время { get; set; }
-        public Nullable<byte> Помещение { get; set; }
+        public int Клиент { get; set; }
+        public byte Абонемент { get; set; }
+        public System.DateTime ДатаНачала { get; set; }
+        public System.DateTime ДатаОкончания { get; set; }
+
+        public static explicit operator К_Карта(DbSet<К_Карта> v)
+        {
+            throw new NotImplementedException();
+        }
+
+        public byte Статус { get; set; }
     
+        public virtual Абонемент Абонемент1 { get; set; }
         public virtual Клиент Клиент1 { get; set; }
-        public virtual Помещение Помещение1 { get; set; }
-        public virtual Услуга Услуга1 { get; set; }
+        public virtual Статус Статус1 { get; set; }
     }
 }
