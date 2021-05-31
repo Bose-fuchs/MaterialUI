@@ -1,21 +1,11 @@
 ﻿using MaterialUI.Class;
 using MaterialUI.Database;
-using MaterialUI.Windows;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MaterialUI.Windows
 {
@@ -122,7 +112,8 @@ namespace MaterialUI.Windows
             {
                 GMsCheckBox.IsEnabled = true;
                 GMsCheckBox.IsChecked = true;
-            } else
+            }
+            else
             {
                 GMsCheckBox.IsEnabled = false;
                 GMsCheckBox.IsChecked = false;
@@ -168,7 +159,7 @@ namespace MaterialUI.Windows
         {
             Посещения visit = null;
 
-            if (GMsCheckBox.IsChecked == true 
+            if (GMsCheckBox.IsChecked == true
                 && ClientDataGrid.SelectedIndex != -1
                 && DateVisit.SelectedDate != null
                 && TimeVisit.SelectedTime != null
@@ -186,7 +177,8 @@ namespace MaterialUI.Windows
                 Connect.Model.Посещения.Add(visit);
                 Connect.Model.SaveChanges();
                 this.Close();
-            } else
+            }
+            else
             {
                 if (GMsCheckBox.IsChecked == false
                 && ClientDataGrid.SelectedIndex != -1

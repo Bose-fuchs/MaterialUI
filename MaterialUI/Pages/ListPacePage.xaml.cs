@@ -2,19 +2,10 @@
 using MaterialUI.Database;
 using MaterialUI.Windows;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MaterialUI.Pages
 {
@@ -74,7 +65,7 @@ namespace MaterialUI.Pages
         {
             try
             {
-                if (MessageBox.Show("Удаление данной записи может привести к потере данных. Продолжить?","Внимание", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                if (MessageBox.Show("Удаление данной записи может привести к потере данных. Продолжить?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
                 {
                     Помещение помещение = PlaceList.SelectedItem as Помещение;
                     Connect.Model.Помещение.Remove(помещение);

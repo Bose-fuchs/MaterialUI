@@ -2,19 +2,10 @@
 using MaterialUI.Database;
 using MaterialUI.Windows;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MaterialUI.Pages
 {
@@ -63,10 +54,10 @@ namespace MaterialUI.Pages
                         break;
                     case "BreakBefore":
                         расписание.ПерерывДо = Helper.time;
-                        break;                    
+                        break;
                     case "WorkWith":
                         расписание.РаботаС = Helper.time;
-                        break;                    
+                        break;
                     case "WorkBefore":
                         расписание.РаботаДо = Helper.time;
                         break;
@@ -87,7 +78,7 @@ namespace MaterialUI.Pages
                 Connect.Model.SaveChanges();
                 WorkPlanDataGrid.ItemsSource = Connect.Model.Расписание.Where(x => x.Тренер == Helper.employee.Id).OrderBy(x => x.День).ToList();
             }
-            
+
         }
 
         private void AddDay_Click(object sender, RoutedEventArgs e)

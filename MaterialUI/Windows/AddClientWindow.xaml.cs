@@ -1,5 +1,6 @@
 ﻿using MaterialUI.Class;
 using MaterialUI.Database;
+using MaterialUI.Pages;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -105,10 +106,7 @@ namespace MaterialUI.Windows
                     Connect.Model.Клиент.Add(клиент);
                     Connect.Model.SaveChanges();
                     MessageBox.Show("Запись добавлена", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
-                    if (MessageBox.Show("Создать клубну карту?", "Внимание", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
-                    {
-                        MessageBox.Show("Ща все будет");
-                    }
+                    AppFrame.FrameMain.Navigate(new ClubCard(клиент));
                     this.Close();
                 }
                 catch (Exception ex)

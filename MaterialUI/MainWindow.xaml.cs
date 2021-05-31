@@ -76,7 +76,7 @@ namespace MaterialUI
 
         private async void UpdateStatusAsync()
         {
-            await Task.Run(() => 
+            await Task.Run(() =>
             {
                 List<К_Карта> card = Connect.Model.К_Карта.ToList();
 

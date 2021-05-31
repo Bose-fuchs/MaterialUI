@@ -75,9 +75,6 @@ namespace MaterialUI.Pages
                     gymmembershipWindow.ShowDialog();
                     GymmembershipDataGrid.ItemsSource = Connect.Model.К_Карта.Where(x => x.Клиент == Helper.client.Id).OrderBy(x => x.Статус1.Название).ToList();
                 }
-                    
-
-            
 
             if (test != null && test.Статус == 1)
                 MessageBox.Show("Есть действующий абонемент", "Внимание", MessageBoxButton.OK, MessageBoxImage.Warning);

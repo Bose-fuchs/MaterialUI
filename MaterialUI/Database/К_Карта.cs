@@ -11,8 +11,7 @@ namespace MaterialUI.Database
 {
     using System;
     using System.Collections.Generic;
-    using System.Data.Entity;
-
+    
     public partial class К_Карта
     {
         public int Id { get; set; }
@@ -20,12 +19,6 @@ namespace MaterialUI.Database
         public byte Абонемент { get; set; }
         public System.DateTime ДатаНачала { get; set; }
         public System.DateTime ДатаОкончания { get; set; }
-
-        public static explicit operator К_Карта(DbSet<К_Карта> v)
-        {
-            throw new NotImplementedException();
-        }
-
         public byte Статус { get; set; }
     
         public virtual Абонемент Абонемент1 { get; set; }

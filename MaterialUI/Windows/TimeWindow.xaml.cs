@@ -1,17 +1,7 @@
 ﻿using MaterialUI.Class;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace MaterialUI.Windows
 {
@@ -51,7 +41,8 @@ namespace MaterialUI.Windows
             {
                 DateTime dateTime = (DateTime)TimeWork.SelectedTime;
                 Helper.time = dateTime - DateTime.Today;
-            } else
+            }
+            else
             {
                 Helper.time = new TimeSpan(Convert.ToInt32(DefaultText));
             }

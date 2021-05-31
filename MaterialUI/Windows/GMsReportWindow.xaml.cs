@@ -1,20 +1,11 @@
 ﻿using MaterialUI.Class;
 using MaterialUI.Database;
 using MaterialUI.Pages;
-using QRCoder;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 
 namespace MaterialUI.Windows
@@ -86,8 +77,18 @@ namespace MaterialUI.Windows
                 ClearDayCount.Visibility = Visibility.Visible;
             }
 
-            // FIXME
-            GymmembershipDataGrid.ItemsSource = Connect.Model.К_Карта.Where(x => x.Статус == 1).Where(x => x.ДатаОкончания - DateTime.Now < new TimeSpan(Convert.ToInt32(CountDayOfEnd.Text), 0, 0, 0)).ToList();
+            if (CountDayOfEnd.Text != "")
+            {
+                DateTime date = DateTime.Today;
+                DateTime date1 = date.AddDays(Convert.ToInt32(CountDayOfEnd.Text));
+
+                GymmembershipDataGrid.ItemsSource = Connect.Model.К_Карта.Where(x => x.Статус == 1).Where(x => x.ДатаОкончания >= date1).ToList();
+            }
+            else
+            {
+                GymmembershipDataGrid.ItemsSource = Connect.Model.К_Карта.Where(x => x.Статус == 1).Where(x => x.ДатаОкончания > DateTime.Today).ToList();
+            }
+            
         }
 
         private void PrintButto1n_Click(object sender, RoutedEventArgs e)

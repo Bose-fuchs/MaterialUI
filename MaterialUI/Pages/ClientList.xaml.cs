@@ -1,20 +1,10 @@
 ﻿using MaterialUI.Class;
 using MaterialUI.Database;
 using MaterialUI.Windows;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MaterialUI.Pages
 {
@@ -104,7 +94,7 @@ namespace MaterialUI.Pages
         private void EditMenuItem_Click(object sender, RoutedEventArgs e)
         {
             // Получаем выбранного клиента
-            Клиент клиент  = ClientDataGrid.SelectedItem as Клиент;
+            Клиент клиент = ClientDataGrid.SelectedItem as Клиент;
             // Создаем страницу и передаём параметр (выбранного клиента)
             EditClientWindow clientWindow = new EditClientWindow(клиент);
             // Открываем окно
